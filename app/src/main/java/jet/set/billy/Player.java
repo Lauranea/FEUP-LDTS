@@ -270,11 +270,11 @@ public class Player
                     {
                         jumping = false;
                     }
-                    if (px == i * 10 + 10 && ((py + sy > j * 10 && py + sy < j * 10 + 10) || (py > j * 10 && py < j * 10 + 10)))
+                    if ((px == i * 10 + 10 || px == i * 10 + 9) && ((py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))
                     {
                         px++;
                     }
-                    else if (px + sx == i * 10 && ((py + sy > j * 10 && py + sy < j * 10 + 10) || (py > j * 10 && py < j * 10 + 10)))
+                    else if ((px + sx == i * 10 || px + sx == i * 10 + 1) && ((py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))
                     {
                         px--;
                     }
