@@ -3,12 +3,23 @@
  */
 package jet.set.billy;
 
-public class App {
-    public String getGreeting() {
+public class App
+{
+    public String getGreeting()
+    {
         return "Hello World!";
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    public static void main(String[] args)
+    {
+        try
+        {
+            Game game = new Game();
+            game.run();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Exception: " + e.getMessage());
+        }
     }
 }
