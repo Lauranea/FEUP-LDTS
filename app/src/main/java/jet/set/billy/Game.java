@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +31,7 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 public class Game
 {
-    Player player = new Player(150, 120);
+    Player player;
     TextGraphics tg;
     Screen screen;
     Set<Character> pressedKeys = new HashSet<>();
@@ -80,6 +82,9 @@ public class Game
                 pressedKeys.remove(e.getKeyChar());
             }
         });
+
+        player = new Player(150, 100);
+
         screen = new TerminalScreen(terminal);
         tg = screen.newTextGraphics();
         screen.setCursorPosition(null);

@@ -1,6 +1,8 @@
 package jet.set.billy;
 
 import java.util.Set;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 
 import javax.lang.model.util.ElementScanner14;
@@ -22,8 +24,11 @@ public class Player
     int px; // position x
     int py; // position y
 
-    Boolean grounded = true;
-    int direction = -1; // 1 = right, -1 = left
+    Room room;
+    String room_string;
+
+    Boolean grounded = false;
+    int direction = 0; // 1 = right, -1 = left
     int direction_level = 0;
 
     Boolean sprite_backwards = false;
@@ -158,14 +163,14 @@ public class Player
                 }
                 else
                 {
-                    b.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', TextColor.ANSI.WHITE, TextColor.ANSI.BLACK)[0]);
+                    b.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', TextColor.ANSI.BLACK, TextColor.ANSI.BLACK)[0]);
                 }
             }
         }
         return b;
     }
 
-    public Player(int new_px, int new_py)
+    public Player(int new_px, int new_py) throws Exception
     {
         px = new_px;
         py = new_py;
@@ -173,6 +178,9 @@ public class Player
         get_sprites();
 
         player_image = sprites_left.get(0);
+        
+        room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/bathroom.txt").toURI()));
+        room = new Room(room_string, 0, 0, "Bathroom");
     }
 
     public int get_size_x()
@@ -186,6 +194,7 @@ public class Player
 
     public void draw(TextGraphics tg)
     {
+        room.draw(tg);
         TerminalPosition playerPosition = new TerminalPosition(px, py);
         tg.drawImage(playerPosition, player_image, playerPosition.TOP_LEFT_CORNER, player_image.getSize());
     }
@@ -244,6 +253,24 @@ public class Player
         }
     }
 
+    void collision_ground()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            for (int j = 0; j < 15; j++)
+            {
+                if (room_string.charAt(i + j * 21) == 'x')
+                {
+                    if (px > i * 10 - 1 && px + sx < i * 10 + 11 && py + sy == j * 10)
+                    {
+                        grounded = true;
+                        jumping = false;
+                    }
+                }
+            }
+        }
+    }
+
     public void handle_input(Set<Character> pressedKeys)
     {
         if (grounded)
@@ -298,6 +325,7 @@ public class Player
                 advance_sprite();
                 player_image = sprites_right.get(direction_level);
             }
+            collision_ground();
         }
     }
 }
