@@ -55,89 +55,89 @@ public class Player
                                       "   xxx    ";
         sprites_left.add(text_to_sprite(player_image_string));
         player_image_string = "   xxxx   "+
-                                      "   xxxx   "+
-                                      "  xxxxxx  "+
-                                      "   x xx   "+
-                                      "  xxxxx   "+
-                                      "   xxxx   "+
-                                      "    xx    "+
-                                      "   xxxx   "+
-                                      "  xxxxxx  "+
-                                      " xxxxxxxx "+
-                                      "xxxxxxxxxx"+
-                                      "xx xxxx xx"+
-                                      "   xxxx   "+
-                                      "x  xx xxx "+
-                                      "xxxx    xx"+
-                                      " xxx   xxx";
+                              "   xxxx   "+
+                              "  xxxxxx  "+
+                              "   x xx   "+
+                              "  xxxxx   "+
+                              "   xxxx   "+
+                              "    xx    "+
+                              "   xxxx   "+
+                              "  xxxxxx  "+
+                              "  xxxxxx  "+
+                              " xxx xxxx "+
+                              " xx xxxxx "+
+                              "   xxxx   "+
+                              "  xx xxx  "+
+                              "  xxx xx  "+
+                              " xxx xxx  ";
         sprites_left.add(text_to_sprite(player_image_string));
         player_image_string = "   xxxx   "+
-                                      "   xxxx   "+
-                                      "  xxxxxx  "+
-                                      "   x xx   "+
-                                      "  xxxxx   "+
-                                      "   xxxx   "+
-                                      "    xx    "+
-                                      "   xxxx   "+
-                                      "  xxxxxx  "+
-                                      " xxxxxxxx "+
-                                      "xxxxxxxxxx"+
-                                      "xx xxxx xx"+
-                                      "   xxxx   "+
-                                      "x  xx xxx "+
-                                      "xxxx    xx"+
-                                      " xxx   xxx";
+                              "   xxxx   "+
+                              "  xxxxxx  "+
+                              "   x xx   "+
+                              "  xxxxx   "+
+                              "   xxxx   "+
+                              "    xx    "+
+                              "   xxxx   "+
+                              "  xxxxxx  "+
+                              " xxxxxxxx "+
+                              "xxxxxxxxxx"+
+                              "xx xxxx xx"+
+                              "   xxxx   "+
+                              "x  xx xxx "+
+                              "xxxx    xx"+
+                              " xxx   xxx";
         sprites_left.add(text_to_sprite(player_image_string));
         player_image_string = "   xxxx   "+
-                                      "   xxxx   "+
-                                      "  xxxxxx  "+
-                                      "   xx x   "+
-                                      "   xxxxx  "+
-                                      "   xxxx   "+
-                                      "    xx    "+
-                                      "   xxxx   "+
-                                      "  xx xxx  "+
-                                      "  xx xxx  "+
-                                      "  xx xxx  "+
-                                      "  xxx xx  "+
-                                      "   xxxx   "+
-                                      "    xx    "+
-                                      "    xx    "+
-                                      "    xxx   ";
+                              "   xxxx   "+
+                              "  xxxxxx  "+
+                              "   xx x   "+
+                              "   xxxxx  "+
+                              "   xxxx   "+
+                              "    xx    "+
+                              "   xxxx   "+
+                              "  xx xxx  "+
+                              "  xx xxx  "+
+                              "  xx xxx  "+
+                              "  xxx xx  "+
+                              "   xxxx   "+
+                              "    xx    "+
+                              "    xx    "+
+                              "    xxx   ";
         sprites_right.add(text_to_sprite(player_image_string));
         player_image_string = "   xxxx   "+
-                                      "   xxxx   "+
-                                      "  xxxxxx  "+
-                                      "   xx x   "+
-                                      "   xxxxx  "+
-                                      "   xxxx   "+
-                                      "    xx    "+
-                                      "   xxxx   "+
-                                      "  xxxxxx  "+
-                                      " xxxxxxxx "+
-                                      "xxxxxxxxxx"+
-                                      "xx xxxx xx"+
-                                      "   xxxx   "+
-                                      " xxx xx  x"+
-                                      "xx    xxxx"+
-                                      "xxx   xxx ";
+                              "   xxxx   "+
+                              "  xxxxxx  "+
+                              "   xx x   "+
+                              "   xxxxx  "+
+                              "   xxxx   "+
+                              "    xx    "+
+                              "   xxxx   "+
+                              "  xxxxxx  "+
+                              "  xxxxxx  "+
+                              " xxxx xxx "+
+                              " xxxxx xx "+
+                              "   xxxx   "+
+                              "  xxx xx  "+
+                              "  xx xxx  "+
+                              "  xxx xxx ";
         sprites_right.add(text_to_sprite(player_image_string));
         player_image_string = "   xxxx   "+
-                                      "   xxxx   "+
-                                      "  xxxxxx  "+
-                                      "   xx x   "+
-                                      "   xxxxx  "+
-                                      "   xxxx   "+
-                                      "    xx    "+
-                                      "   xxxx   "+
-                                      "  xxxxxx  "+
-                                      " xxxxxxxx "+
-                                      "xxxxxxxxxx"+
-                                      "xx xxxx xx"+
-                                      "   xxxx   "+
-                                      " xxx xx  x"+
-                                      "xx    xxxx"+
-                                      "xxx   xxx ";
+                              "   xxxx   "+
+                              "  xxxxxx  "+
+                              "   xx x   "+
+                              "   xxxxx  "+
+                              "   xxxx   "+
+                              "    xx    "+
+                              "   xxxx   "+
+                              "  xxxxxx  "+
+                              " xxxxxxxx "+
+                              "xxxxxxxxxx"+
+                              "xx xxxx xx"+
+                              "   xxxx   "+
+                              " xxx xx  x"+
+                              "xx    xxxx"+
+                              "xxx   xxx ";
         sprites_right.add(text_to_sprite(player_image_string));
     }
 
@@ -198,7 +198,7 @@ public class Player
     void advance_sprite()
     {
         sprite_delay++;
-        if (sprite_delay > 3)
+        if (sprite_delay > 5)
         {
             if (!sprite_backwards)
             {
