@@ -253,7 +253,7 @@ public class Player
         }
     }
 
-    void collision_ground()
+    void collision()
     {
         for (int i = 0; i < 20; i++)
         {
@@ -261,10 +261,22 @@ public class Player
             {
                 if (room_string.charAt(i + j * 21) == 'x')
                 {
-                    if (px > i * 10 - 1 && px + sx < i * 10 + 11 && py + sy == j * 10)
+                    if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && py + sy == j * 10)
                     {
                         grounded = true;
                         jumping = false;
+                    }
+                    else if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && py == j * 10 + 10)
+                    {
+                        jumping = false;
+                    }
+                    if (px == i * 10 + 10 && ((py + sy > j * 10 && py + sy < j * 10 + 10) || (py > j * 10 && py < j * 10 + 10)))
+                    {
+                        px++;
+                    }
+                    else if (px + sx == i * 10 && ((py + sy > j * 10 && py + sy < j * 10 + 10) || (py > j * 10 && py < j * 10 + 10)))
+                    {
+                        px--;
                     }
                 }
             }
@@ -275,6 +287,7 @@ public class Player
     {
         if (grounded)
         {
+            jump_height = 0;
             direction = 0;
             if (pressedKeys.contains('a'))
             {
@@ -293,13 +306,14 @@ public class Player
             if ((pressedKeys.contains('w')))
             {
                 jump();
+                return;
             }
         }
         else
         {
             if (jumping)
             {
-                if (jump_height < 30)
+                if (jump_height < 25)
                 {
                     py--;
                     jump_height++;
@@ -325,7 +339,8 @@ public class Player
                 advance_sprite();
                 player_image = sprites_right.get(direction_level);
             }
-            collision_ground();
         }
+        grounded = false;
+        collision();
     }
 }
