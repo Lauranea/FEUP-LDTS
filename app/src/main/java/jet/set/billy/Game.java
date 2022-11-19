@@ -95,7 +95,7 @@ public class Game
             draw();
 
             screen.refresh();
-            Thread.sleep(10);
+            Thread.sleep(20);
         }
         screen.close();
     }

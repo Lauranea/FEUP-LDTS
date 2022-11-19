@@ -32,6 +32,10 @@ public class Player
 
     BasicTextImage player_image;
 
+    Boolean jumping = false;
+    int jump_height = 0;
+    Boolean move_air = true;
+
     LinkedList<BasicTextImage> sprites_left = new LinkedList<BasicTextImage>();
     LinkedList<BasicTextImage> sprites_right = new LinkedList<BasicTextImage>();
 
@@ -195,6 +199,24 @@ public class Player
         px += 1;
     }
 
+    void move_left_air()
+    {
+        px -= 1;
+    }
+    void move_right_air()
+    {
+        px += 1;
+    }
+
+    void jump()
+    {
+        if (grounded)
+        {
+            grounded = false;
+            jumping = true;
+        }
+    }
+
     void advance_sprite()
     {
         sprite_delay++;
@@ -226,6 +248,7 @@ public class Player
     {
         if (grounded)
         {
+            direction = 0;
             if (pressedKeys.contains('a'))
             {
                 move_left();
@@ -239,6 +262,41 @@ public class Player
                 advance_sprite();
                 player_image = sprites_right.get(direction_level);
                 direction = 1;
+            }
+            if ((pressedKeys.contains('w')))
+            {
+                jump();
+            }
+        }
+        else
+        {
+            if (jumping)
+            {
+                if (jump_height < 30)
+                {
+                    py--;
+                    jump_height++;
+                }
+                else
+                {
+                    jumping = false;
+                }
+            }
+            else
+            {
+                py++;
+            }
+            if (direction == -1)
+            {
+                move_left_air();
+                advance_sprite();
+                player_image = sprites_left.get(direction_level);
+            }
+            else if (direction == 1)
+            {
+                move_right_air();
+                advance_sprite();
+                player_image = sprites_right.get(direction_level);
             }
         }
     }
