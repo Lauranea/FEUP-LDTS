@@ -39,7 +39,7 @@ public class Player
 
     Boolean jumping = false;
     int jump_height = 0;
-    Boolean move_air = true;
+    Boolean fall_after_jump = false;
 
     LinkedList<BasicTextImage> sprites_left = new LinkedList<BasicTextImage>();
     LinkedList<BasicTextImage> sprites_right = new LinkedList<BasicTextImage>();
@@ -270,11 +270,11 @@ public class Player
                     {
                         jumping = false;
                     }
-                    if ((px == i * 10 + 10 || px == i * 10 + 9) && ((py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))
+                    if ((px == i * 10 + 10 || px == i * 10 + 9) && ((py + 5 > j * 10 && py + 5 <= j * 10 + 10) || (py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))
                     {
                         px++;
                     }
-                    else if ((px + sx == i * 10 || px + sx == i * 10 + 1) && ((py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))
+                    else if ((px + sx == i * 10 || px + sx == i * 10 + 1) && ((py + 5 > j * 10 && py+ 5 <= j * 10 + 10) || (py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))
                     {
                         px--;
                     }
@@ -287,6 +287,7 @@ public class Player
     {
         if (grounded)
         {
+            fall_after_jump = false;
             jump_height = 0;
             direction = 0;
             if (pressedKeys.contains('a'))
@@ -313,6 +314,7 @@ public class Player
         {
             if (jumping)
             {
+                fall_after_jump = true;
                 if (jump_height < 25)
                 {
                     py--;
@@ -327,17 +329,20 @@ public class Player
             {
                 py++;
             }
-            if (direction == -1)
+            if (fall_after_jump)
             {
-                move_left_air();
-                advance_sprite();
-                player_image = sprites_left.get(direction_level);
-            }
-            else if (direction == 1)
-            {
-                move_right_air();
-                advance_sprite();
-                player_image = sprites_right.get(direction_level);
+                if (direction == -1)
+                {
+                    move_left_air();
+                    advance_sprite();
+                    player_image = sprites_left.get(direction_level);
+                }
+                else if (direction == 1)
+                {
+                    move_right_air();
+                    advance_sprite();
+                    player_image = sprites_right.get(direction_level);
+                }
             }
         }
         grounded = false;
