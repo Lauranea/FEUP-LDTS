@@ -1,6 +1,7 @@
 package jet.set.billy;
 
 import java.util.Set;
+import java.util.LinkedList;
 
 import javax.lang.model.util.ElementScanner14;
 
@@ -22,21 +23,21 @@ public class Player
     int py; // position y
 
     Boolean grounded = true;
-    int direction_level = 0;
     int direction = -1; // 1 = right, -1 = left
+    int direction_level = 0;
+
+    Boolean sprite_backwards = false;
 
     int sprite_delay = 0;
 
     BasicTextImage player_image;
 
-    public BasicTextImage get_player_image()
+    LinkedList<BasicTextImage> sprites_left = new LinkedList<BasicTextImage>();
+    LinkedList<BasicTextImage> sprites_right = new LinkedList<BasicTextImage>();
+
+    void get_sprites()
     {
-        String player_image_string = "";
-        if (direction == -1)
-        {
-            if (direction_level == 0)
-            {
-                player_image_string = "   xxxx   "+
+        String player_image_string =  "   xxxx   "+
                                       "   xxxx   "+
                                       "  xxxxxx  "+
                                       "   x xx   "+
@@ -52,10 +53,8 @@ public class Player
                                       "    xx    "+
                                       "    xx    "+
                                       "   xxx    ";
-            }
-            else if (direction_level == 1)
-            {
-                player_image_string = "   xxxx   "+
+        sprites_left.add(text_to_sprite(player_image_string));
+        player_image_string = "   xxxx   "+
                                       "   xxxx   "+
                                       "  xxxxxx  "+
                                       "   x xx   "+
@@ -71,10 +70,8 @@ public class Player
                                       "x  xx xxx "+
                                       "xxxx    xx"+
                                       " xxx   xxx";
-            }
-            else //
-            {
-                player_image_string = "   xxxx   "+
+        sprites_left.add(text_to_sprite(player_image_string));
+        player_image_string = "   xxxx   "+
                                       "   xxxx   "+
                                       "  xxxxxx  "+
                                       "   x xx   "+
@@ -90,14 +87,8 @@ public class Player
                                       "x  xx xxx "+
                                       "xxxx    xx"+
                                       " xxx   xxx";
-            }
-        }
-        
-        else
-        {
-            if (direction_level == 0)
-            {
-                player_image_string = "   xxxx   "+
+        sprites_left.add(text_to_sprite(player_image_string));
+        player_image_string = "   xxxx   "+
                                       "   xxxx   "+
                                       "  xxxxxx  "+
                                       "   xx x   "+
@@ -113,10 +104,8 @@ public class Player
                                       "    xx    "+
                                       "    xx    "+
                                       "    xxx   ";
-            }
-            else if (direction_level == 1)
-            {
-                player_image_string = "   xxxx   "+
+        sprites_right.add(text_to_sprite(player_image_string));
+        player_image_string = "   xxxx   "+
                                       "   xxxx   "+
                                       "  xxxxxx  "+
                                       "   xx x   "+
@@ -132,10 +121,8 @@ public class Player
                                       " xxx xx  x"+
                                       "xx    xxxx"+
                                       "xxx   xxx ";
-            }
-            else
-            {
-                player_image_string = "   xxxx   "+
+        sprites_right.add(text_to_sprite(player_image_string));
+        player_image_string = "   xxxx   "+
                                       "   xxxx   "+
                                       "  xxxxxx  "+
                                       "   xx x   "+
@@ -151,32 +138,37 @@ public class Player
                                       " xxx xx  x"+
                                       "xx    xxxx"+
                                       "xxx   xxx ";
-            }
-        }
-        
-        player_image = new BasicTextImage(sx, sy);
+        sprites_right.add(text_to_sprite(player_image_string));
+    }
+
+    BasicTextImage text_to_sprite(String t)
+    {
+        BasicTextImage b = new BasicTextImage(sx, sy);
         for (int i = 0; i < sy; i++)
         {
             for (int j = 0; j < sx; j++)
             {
-                if (player_image_string.charAt(i * sx + j) == 'x')
+                if (t.charAt(i * sx + j) == 'x')
                 {
-                    player_image.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', TextColor.ANSI.WHITE, TextColor.ANSI.WHITE)[0]);
+                    b.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', TextColor.ANSI.WHITE, TextColor.ANSI.WHITE)[0]);
                 }
                 else
                 {
-                    player_image.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', TextColor.ANSI.WHITE, TextColor.ANSI.BLACK)[0]);
+                    b.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', TextColor.ANSI.WHITE, TextColor.ANSI.BLACK)[0]);
                 }
             }
         }
-
-        return player_image;
+        return b;
     }
 
     public Player(int new_px, int new_py)
     {
         px = new_px;
         py = new_py;
+
+        get_sprites();
+
+        player_image = sprites_left.get(0);
     }
 
     public int get_size_x()
@@ -190,7 +182,6 @@ public class Player
 
     public void draw(TextGraphics tg)
     {
-        player_image = get_player_image();
         TerminalPosition playerPosition = new TerminalPosition(px, py);
         tg.drawImage(playerPosition, player_image, playerPosition.TOP_LEFT_CORNER, player_image.getSize());
     }
@@ -204,6 +195,33 @@ public class Player
         px += 1;
     }
 
+    void advance_sprite()
+    {
+        sprite_delay++;
+        if (sprite_delay > 3)
+        {
+            if (!sprite_backwards)
+            {
+                direction_level++;
+                if (direction_level > 2)
+                {
+                    direction_level=1;
+                    sprite_backwards = true;
+                }
+            }
+            else
+            {
+                direction_level--;
+                if (direction_level < 0)
+                {
+                    direction_level=1;
+                    sprite_backwards = false;
+                }
+            }
+            sprite_delay = 0;
+        }
+    }
+
     public void handle_input(Set<Character> pressedKeys)
     {
         if (grounded)
@@ -211,31 +229,15 @@ public class Player
             if (pressedKeys.contains('a'))
             {
                 move_left();
-                sprite_delay++;
-                if (sprite_delay > 3)
-                {
-                    direction_level++;
-                    if (direction_level > 2)
-                    {
-                        direction_level = 0;
-                    }
-                    sprite_delay = 0;
-                }
+                advance_sprite();
+                player_image = sprites_left.get(direction_level);
                 direction = -1;
             }
             if (pressedKeys.contains('d'))
             {
                 move_right();
-                sprite_delay++;
-                if (sprite_delay > 3)
-                {
-                    direction_level++;
-                    if (direction_level > 2)
-                    {
-                        direction_level = 0;
-                    }
-                    sprite_delay = 0;
-                }
+                advance_sprite();
+                player_image = sprites_right.get(direction_level);
                 direction = 1;
             }
         }
