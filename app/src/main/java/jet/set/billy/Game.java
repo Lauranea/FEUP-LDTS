@@ -29,7 +29,7 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 public class Game
 {
-    Player player = new Player(10, 10);
+    Player player = new Player(150, 120);
     TextGraphics tg;
     Screen screen;
     Set<Character> pressedKeys = new HashSet<>();
