@@ -35,8 +35,7 @@ public class Player
     Boolean sprite_backwards = false;
 
     int sprite_delay = 0;
-
-    BasicTextImage player_image;
+    String current_sprite;
 
     Boolean jumping = false;
     int jump_height = 0;
@@ -49,8 +48,8 @@ public class Player
         3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1
     ));
 
-    LinkedList<BasicTextImage> sprites_left = new LinkedList<BasicTextImage>();
-    LinkedList<BasicTextImage> sprites_right = new LinkedList<BasicTextImage>();
+    LinkedList<String> sprites_left = new LinkedList<String>();
+    LinkedList<String> sprites_right = new LinkedList<String>();
 
     void get_sprites()
     {
@@ -70,7 +69,7 @@ public class Player
                                       "    xx    "+
                                       "    xx    "+
                                       "   xxx    ";
-        sprites_left.add(text_to_sprite(player_image_string));
+        sprites_left.add(player_image_string);
         player_image_string = "   xxxx   "+
                               "   xxxx   "+
                               "  xxxxxx  "+
@@ -87,7 +86,7 @@ public class Player
                               "  xx xxx  "+
                               "  xxx xx  "+
                               " xxx xxx  ";
-        sprites_left.add(text_to_sprite(player_image_string));
+        sprites_left.add(player_image_string);
         player_image_string = "   xxxx   "+
                               "   xxxx   "+
                               "  xxxxxx  "+
@@ -104,7 +103,7 @@ public class Player
                               "x  xx xxx "+
                               "xxxx    xx"+
                               " xxx   xxx";
-        sprites_left.add(text_to_sprite(player_image_string));
+        sprites_left.add(player_image_string);
         player_image_string = "   xxxx   "+
                               "   xxxx   "+
                               "  xxxxxx  "+
@@ -121,7 +120,7 @@ public class Player
                               "    xx    "+
                               "    xx    "+
                               "    xxx   ";
-        sprites_right.add(text_to_sprite(player_image_string));
+        sprites_right.add(player_image_string);
         player_image_string = "   xxxx   "+
                               "   xxxx   "+
                               "  xxxxxx  "+
@@ -138,7 +137,7 @@ public class Player
                               "  xxx xx  "+
                               "  xx xxx  "+
                               "  xxx xxx ";
-        sprites_right.add(text_to_sprite(player_image_string));
+        sprites_right.add(player_image_string);
         player_image_string = "   xxxx   "+
                               "   xxxx   "+
                               "  xxxxxx  "+
@@ -155,32 +154,12 @@ public class Player
                               " xxx xx  x"+
                               "xx    xxxx"+
                               "xxx   xxx ";
-        sprites_right.add(text_to_sprite(player_image_string));
+        sprites_right.add(player_image_string);
     }
 
     void room_change(Room cur_room)
     {
         room = cur_room;
-    }
-
-    BasicTextImage text_to_sprite(String t)
-    {
-        BasicTextImage b = new BasicTextImage(sx, sy);
-        for (int i = 0; i < sy; i++)
-        {
-            for (int j = 0; j < sx; j++)
-            {
-                if (t.charAt(i * sx + j) == 'x')
-                {
-                    b.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', TextColor.ANSI.WHITE, TextColor.ANSI.WHITE)[0]);
-                }
-                else
-                {
-                    b.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', TextColor.ANSI.BLACK, TextColor.ANSI.BLACK)[0]);
-                }
-            }
-        }
-        return b;
     }
 
     public Player(int new_px, int new_py, Room cur_room) throws Exception
@@ -190,7 +169,7 @@ public class Player
 
         get_sprites();
 
-        player_image = sprites_left.get(0);
+        current_sprite = sprites_left.get(0);
         
         room = cur_room;
     }
@@ -206,8 +185,16 @@ public class Player
 
     public void draw(TextGraphics tg)
     {
-        TerminalPosition playerPosition = new TerminalPosition(px, py);
-        tg.drawImage(playerPosition, player_image, playerPosition.TOP_LEFT_CORNER, player_image.getSize());
+        for (int i = 0; i < sy; i++)
+        {
+            for (int j = 0; j < sx; j++)
+            {
+                if (current_sprite.charAt(i * sx + j) == 'x')
+                {
+                    tg.setCharacter(px + j, py + i,  TextCharacter.fromCharacter(' ', TextColor.ANSI.WHITE, TextColor.ANSI.WHITE)[0]);
+                }
+            }
+        }
     }
 
     void move_left()
@@ -375,14 +362,14 @@ public class Player
             {
                 move_left();
                 advance_sprite();
-                player_image = sprites_left.get(direction_level);
+                current_sprite = sprites_left.get(direction_level);
                 direction = -1;
             }
             if (pressedKeys.contains('d'))
             {
                 move_right();
                 advance_sprite();
-                player_image = sprites_right.get(direction_level);
+                current_sprite = sprites_right.get(direction_level);
                 direction = 1;
             }
             if ((pressedKeys.contains('w')))
@@ -416,13 +403,13 @@ public class Player
                 {
                     move_left();
                     advance_sprite();
-                    player_image = sprites_left.get(direction_level);
+                    current_sprite = sprites_left.get(direction_level);
                 }
                 else if (direction == 1)
                 {
                     move_right();
                     advance_sprite();
-                    player_image = sprites_right.get(direction_level);
+                    current_sprite = sprites_right.get(direction_level);
                 }
             }
         }
