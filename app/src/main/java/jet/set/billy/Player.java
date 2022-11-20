@@ -219,15 +219,6 @@ public class Player
         px += 1;
     }
 
-    void move_left_air()
-    {
-        px -= 1;
-    }
-    void move_right_air()
-    {
-        px += 1;
-    }
-
     void jump()
     {
         if (grounded)
@@ -294,6 +285,58 @@ public class Player
         }
     }
 
+    Boolean collision_ground(int i, int j)
+    {
+        if (!jumping && ((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py + sy >= j * 10 && py + sy < j * 10 + 5))
+        {
+            if (py + sy > j * 10)
+            {
+                py = j * 10 - sy;
+            }
+            grounded = true;
+            return true;
+        }
+        return false;
+    }
+
+    Boolean collision_ceiling(int i, int j)
+    {
+        if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py <= j * 10 + 10 && py > j * 10 + 5))
+        {
+            if (jump_index < 10)
+            {
+                jump_index = 10;
+            }
+            if (py < j * 10 + 10)
+            {
+                py = j * 10 + 10;
+            }
+            jumping = false;
+            return true;
+        }
+        return false;
+    }
+
+    Boolean collision_left(int i, int j)
+    {
+        if ((px == i * 10 + 10 || px == i * 10 + 9) && ((py + 6 > j * 10 && py + 6 <= j * 10 + 10) || (py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))
+        {
+            px++;
+            return true;
+        }
+        return false;
+    }
+
+    Boolean collision_right(int i, int j)
+    {
+        if ((px + sx == i * 10 || px + sx == i * 10 + 1) && ((py + 6 > j * 10 && py + 6 <= j * 10 + 10) || (py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))
+        {
+            px--;
+            return true;
+        }
+        return false;
+    }
+
     void collision()
     {
         for (int i = 0; i < 30; i++)
@@ -302,30 +345,18 @@ public class Player
             {
                 if (room.get_room_string().charAt(i + j * 31) == 'x')
                 {
-                    if (!jumping && ((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py + sy >= j * 10 && py + sy < j * 10 + 5))
+                    if (!collision_ground(i, j))
                     {
-                        if (py + sy > j * 10)
-                        {
-                            py = j * 10 - sy;
-                        }
-                        grounded = true;
+                        collision_ceiling(i, j);
                     }
-                    else if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py <= j * 10 + 10 && py > j * 10 + 5))
+                    if (!collision_left(i, j))
                     {
-                        if (jump_index < 10)
-                        {
-                            jump_index = 10;
-                        }
-                        jumping = false;
+                        collision_right(i, j);
                     }
-                    if ((px == i * 10 + 10 || px == i * 10 + 9) && ((py + 6 > j * 10 && py + 6 <= j * 10 + 10) || (py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))
-                    {
-                        px++;
-                    }
-                    else if ((px + sx == i * 10 || px + sx == i * 10 + 1) && ((py + 6 > j * 10 && py + 6 <= j * 10 + 10) || (py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))
-                    {
-                        px--;
-                    }
+                }
+                else if (room.get_room_string().charAt(i + j * 31) == '-' || room.get_room_string().charAt(i + j * 31) == 'H')
+                {
+                    collision_ground(i, j);
                 }
             }
         }
@@ -383,13 +414,13 @@ public class Player
             {
                 if (direction == -1)
                 {
-                    move_left_air();
+                    move_left();
                     advance_sprite();
                     player_image = sprites_left.get(direction_level);
                 }
                 else if (direction == 1)
                 {
-                    move_right_air();
+                    move_right();
                     advance_sprite();
                     player_image = sprites_right.get(direction_level);
                 }
