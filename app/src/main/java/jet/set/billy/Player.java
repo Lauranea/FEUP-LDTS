@@ -26,7 +26,7 @@ public class Player
     int px; // position x
     int py; // position y
 
-    Room room;
+    String room_string;
 
     Boolean grounded = false;
     int direction = 0; // 1 = right, -1 = left
@@ -157,12 +157,7 @@ public class Player
         sprites_right.add(player_image_string);
     }
 
-    void room_change(Room cur_room)
-    {
-        room = cur_room;
-    }
-
-    public Player(int new_px, int new_py, Room cur_room) throws Exception
+    public Player(int new_px, int new_py, String cur_room) throws Exception
     {
         px = new_px;
         py = new_py;
@@ -171,7 +166,7 @@ public class Player
 
         current_sprite = sprites_left.get(0);
         
-        room = cur_room;
+        room_string = cur_room;
     }
 
     public int get_size_x()
@@ -181,6 +176,29 @@ public class Player
     public int get_size_y()
     {
         return sy;
+    }
+
+    public int get_position_x()
+    {
+        return px;
+    }
+    public int get_position_y()
+    {
+        return py;
+    }
+
+    public void set_position_x(int new_px)
+    {
+        px = new_px;
+    }
+    public void set_position_y(int new_py)
+    {
+        py = new_py;
+    }
+
+    public void change_room(String new_room_string)
+    {
+        room_string = new_room_string;
     }
 
     public void draw(TextGraphics tg)
@@ -326,11 +344,11 @@ public class Player
 
     void collision()
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 25; i++)
         {
             for (int j = 0; j < 15; j++)
             {
-                if (room.get_room_string().charAt(i + j * 31) == 'x')
+                if (room_string.charAt(i + j * 26) == 'x')
                 {
                     if (!collision_ground(i, j))
                     {
@@ -341,7 +359,7 @@ public class Player
                         collision_right(i, j);
                     }
                 }
-                else if (room.get_room_string().charAt(i + j * 31) == '-' || room.get_room_string().charAt(i + j * 31) == 'H')
+                else if (room_string.charAt(i + j * 26) == '-' || room_string.charAt(i + j * 26) == 'H')
                 {
                     collision_ground(i, j);
                 }

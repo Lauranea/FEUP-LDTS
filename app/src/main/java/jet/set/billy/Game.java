@@ -9,8 +9,10 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
@@ -39,6 +41,11 @@ public class Game
     Screen screen;
     Set<Character> pressedKeys = new HashSet<>();
 
+    Vector<Vector<String>> rooms = new Vector<Vector<String>>(Arrays.asList
+    (
+        new Vector<String>(Arrays.asList("Corridor", "Bathroom"))
+    ));
+
     Boolean run = true;
     
     private AWTTerminalFontConfiguration loadFont() throws Exception
@@ -55,16 +62,38 @@ public class Game
         return fontConfig;
     }
 
-    public void draw()
+    void draw()
     {
         room.draw(tg);
         player.draw(tg);
     }
 
+    void change_room() throws Exception
+    {
+        if (player.get_position_x() < 0)
+        {
+            String room_name = rooms.get(room.get_coord1()).get(room.get_coord2() - 1);
+            String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
+            room = new Room(room_string, room.get_coord1(), room.get_coord2() - 1, room_name);
+
+            player.set_position_x(235);
+            player.change_room(room_string);
+        }
+        else if (player.get_position_x() > 240)
+        {
+            String room_name = rooms.get(room.get_coord1()).get(room.get_coord2() + 1);
+            String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
+            room = new Room(room_string, room.get_coord1(), room.get_coord2() + 1, room_name);
+            
+            player.set_position_x(5);
+            player.change_room(room_string);
+        }
+    }
+
     public void run() throws Exception
     {
         AWTTerminalFontConfiguration fontConfig = loadFont();
-        TerminalSize terminalSize = new TerminalSize(300, 150);
+        TerminalSize terminalSize = new TerminalSize(250, 150);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
@@ -88,10 +117,10 @@ public class Game
             }
         });
         
-        String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/bathroom.txt").toURI()));
-        room = new Room(room_string, 0, 0, "Bathroom");
-        
-        player = new Player(250, 100, room);
+        String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/Bathroom.txt").toURI()));
+        room = new Room(room_string, 0, 1, "Bathroom");
+
+        player = new Player(200, 100, room_string);
 
         screen = new TerminalScreen(terminal);
         tg = screen.newTextGraphics();
@@ -104,6 +133,8 @@ public class Game
             player.handle_input(pressedKeys);
 
             screen.clear();
+
+            change_room();
 
             draw();
 
