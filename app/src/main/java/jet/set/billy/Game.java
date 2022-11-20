@@ -32,6 +32,9 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 public class Game
 {
     Player player;
+
+    Room room;
+
     TextGraphics tg;
     Screen screen;
     Set<Character> pressedKeys = new HashSet<>();
@@ -53,6 +56,7 @@ public class Game
 
     public void draw()
     {
+        room.draw(tg);
         player.draw(tg);
     }
 
@@ -82,8 +86,10 @@ public class Game
                 pressedKeys.remove(e.getKeyChar());
             }
         });
-
-        player = new Player(250, 100);
+        
+        String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/bathroom.txt").toURI()));
+        room = new Room(room_string, 0, 0, "Bathroom");
+        player = new Player(250, 100, room);
 
         screen = new TerminalScreen(terminal);
         tg = screen.newTextGraphics();

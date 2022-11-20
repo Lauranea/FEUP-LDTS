@@ -27,7 +27,6 @@ public class Player
     int py; // position y
 
     Room room;
-    String room_string;
 
     Boolean grounded = false;
     int direction = 0; // 1 = right, -1 = left
@@ -43,6 +42,7 @@ public class Player
     int jump_height = 0;
     Boolean fall_after_jump = false;
     int jump_index = 13;
+    int close_to_fall = 5;
 
     Vector<Integer> jump = new Vector<Integer>(Arrays.asList
     (
@@ -158,6 +158,11 @@ public class Player
         sprites_right.add(text_to_sprite(player_image_string));
     }
 
+    void room_change(Room cur_room)
+    {
+        room = cur_room;
+    }
+
     BasicTextImage text_to_sprite(String t)
     {
         BasicTextImage b = new BasicTextImage(sx, sy);
@@ -178,7 +183,7 @@ public class Player
         return b;
     }
 
-    public Player(int new_px, int new_py) throws Exception
+    public Player(int new_px, int new_py, Room cur_room) throws Exception
     {
         px = new_px;
         py = new_py;
@@ -187,8 +192,7 @@ public class Player
 
         player_image = sprites_left.get(0);
         
-        room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/bathroom.txt").toURI()));
-        room = new Room(room_string, 0, 0, "Bathroom");
+        room = cur_room;
     }
 
     public int get_size_x()
@@ -202,7 +206,6 @@ public class Player
 
     public void draw(TextGraphics tg)
     {
-        room.draw(tg);
         TerminalPosition playerPosition = new TerminalPosition(px, py);
         tg.drawImage(playerPosition, player_image, playerPosition.TOP_LEFT_CORNER, player_image.getSize());
     }
@@ -271,6 +274,11 @@ public class Player
         else if (jump_index < 0)
         {
             jump_index = 0;
+            close_to_fall--;
+        }
+
+        if (close_to_fall < 0)
+        {
             fall_after_jump = false;
         }
         
@@ -292,16 +300,15 @@ public class Player
         {
             for (int j = 0; j < 15; j++)
             {
-                if (room_string.charAt(i + j * 31) == 'x')
+                if (room.get_room_string().charAt(i + j * 31) == 'x')
                 {
-                    if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py + sy >= j * 10 && py + sy < j * 10 + 5))
+                    if (!jumping && ((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py + sy >= j * 10 && py + sy < j * 10 + 5))
                     {
                         if (py + sy > j * 10)
                         {
                             py = j * 10 - sy;
                         }
                         grounded = true;
-                        jumping = false;
                     }
                     else if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py <= j * 10 + 10 && py > j * 10 + 5))
                     {
@@ -328,6 +335,7 @@ public class Player
     {
         if (grounded)
         {
+            close_to_fall = 5;
             jump_index = 13;
             fall_after_jump = false;
             jump_height = 0;

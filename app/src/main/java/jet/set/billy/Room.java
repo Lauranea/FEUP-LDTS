@@ -30,7 +30,11 @@ public class Room
         wall.setAll(TextCharacter.fromCharacter(' ', TextColor.ANSI.RED, TextColor.ANSI.BLUE)[0]);
     }
 
-    int d = 0;
+    public String get_room_string()
+    {
+        return room_layout;
+    }
+
     public void draw(TextGraphics tg)
     {
         for (int i = 0; i < 30; i++)
