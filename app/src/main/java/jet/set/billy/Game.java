@@ -48,6 +48,7 @@ public class Game
 
     Boolean run = true;
     
+    // Criar pixeis pequenos
     private AWTTerminalFontConfiguration loadFont() throws Exception
     {
         URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
