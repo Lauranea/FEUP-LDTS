@@ -46,7 +46,7 @@ public class Player
 
     Vector<Integer> jump = new Vector<Integer>(Arrays.asList
     (
-        3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1
+        3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1
     ));
 
     LinkedList<BasicTextImage> sprites_left = new LinkedList<BasicTextImage>();
@@ -271,6 +271,7 @@ public class Player
         else if (jump_index < 0)
         {
             jump_index = 0;
+            fall_after_jump = false;
         }
         
         if (j)
@@ -287,11 +288,11 @@ public class Player
 
     void collision()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 30; i++)
         {
             for (int j = 0; j < 15; j++)
             {
-                if (room_string.charAt(i + j * 21) == 'x')
+                if (room_string.charAt(i + j * 31) == 'x')
                 {
                     if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py + sy >= j * 10 && py + sy < j * 10 + 5))
                     {
@@ -304,6 +305,10 @@ public class Player
                     }
                     else if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py <= j * 10 + 10 && py > j * 10 + 5))
                     {
+                        if (jump_index < 10)
+                        {
+                            jump_index = 10;
+                        }
                         jumping = false;
                     }
                     if ((px == i * 10 + 10 || px == i * 10 + 9) && ((py + 6 > j * 10 && py + 6 <= j * 10 + 10) || (py + sy > j * 10 && py + sy <= j * 10 + 10) || (py > j * 10 && py <= j * 10 + 10)))

@@ -59,7 +59,7 @@ public class Game
     public void run() throws Exception
     {
         AWTTerminalFontConfiguration fontConfig = loadFont();
-        TerminalSize terminalSize = new TerminalSize(200, 150);
+        TerminalSize terminalSize = new TerminalSize(300, 150);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
@@ -83,7 +83,7 @@ public class Game
             }
         });
 
-        player = new Player(150, 100);
+        player = new Player(250, 100);
 
         screen = new TerminalScreen(terminal);
         tg = screen.newTextGraphics();
