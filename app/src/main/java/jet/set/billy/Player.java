@@ -1,8 +1,10 @@
 package jet.set.billy;
 
 import java.util.Set;
+import java.util.Vector;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import javax.lang.model.util.ElementScanner14;
@@ -40,6 +42,12 @@ public class Player
     Boolean jumping = false;
     int jump_height = 0;
     Boolean fall_after_jump = false;
+    int jump_index = 13;
+
+    Vector<Integer> jump = new Vector<Integer>(Arrays.asList
+    (
+        3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1
+    ));
 
     LinkedList<BasicTextImage> sprites_left = new LinkedList<BasicTextImage>();
     LinkedList<BasicTextImage> sprites_right = new LinkedList<BasicTextImage>();
@@ -221,6 +229,7 @@ public class Player
     {
         if (grounded)
         {
+            jump_index = 0;
             grounded = false;
             jumping = true;
         }
@@ -229,7 +238,7 @@ public class Player
     void advance_sprite()
     {
         sprite_delay++;
-        if (sprite_delay > 5)
+        if (sprite_delay > 3)
         {
             if (!sprite_backwards)
             {
@@ -253,6 +262,29 @@ public class Player
         }
     }
 
+    void move_y(Boolean j)
+    {
+        if (jump_index > 13)
+        {
+            jump_index = 13;
+        }
+        else if (jump_index < 0)
+        {
+            jump_index = 0;
+        }
+        
+        if (j)
+        {
+            py -= jump.get(jump_index);
+            jump_index++;
+        }
+        else
+        {
+            py+= jump.get(jump_index);
+            jump_index--;
+        }
+    }
+
     void collision()
     {
         for (int i = 0; i < 20; i++)
@@ -261,12 +293,16 @@ public class Player
             {
                 if (room_string.charAt(i + j * 21) == 'x')
                 {
-                    if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && py + sy == j * 10)
+                    if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py + sy >= j * 10 && py + sy < j * 10 + 5))
                     {
+                        if (py + sy > j * 10)
+                        {
+                            py = j * 10 - sy;
+                        }
                         grounded = true;
                         jumping = false;
                     }
-                    else if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && py == j * 10 + 10)
+                    else if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py <= j * 10 + 10 && py > j * 10 + 5))
                     {
                         jumping = false;
                     }
@@ -287,6 +323,7 @@ public class Player
     {
         if (grounded)
         {
+            jump_index = 13;
             fall_after_jump = false;
             jump_height = 0;
             direction = 0;
@@ -315,9 +352,9 @@ public class Player
             if (jumping)
             {
                 fall_after_jump = true;
-                if (jump_height < 25)
+                if (jump_height < 14)
                 {
-                    py--;
+                    move_y(true);
                     jump_height++;
                 }
                 else
@@ -327,7 +364,7 @@ public class Player
             }
             else
             {
-                py++;
+                move_y(false);
             }
             if (fall_after_jump)
             {
