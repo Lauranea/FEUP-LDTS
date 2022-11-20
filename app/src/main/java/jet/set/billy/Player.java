@@ -363,6 +363,32 @@ public class Player
                 {
                     collision_ground(i, j);
                 }
+
+
+
+                else if (room_string.charAt(i + j * 26) == 's')
+                {
+                    if (!jumping && !fall_after_jump && ((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)))
+                    {
+                        for (int k = 0; k < 10; k ++)
+                        {
+                            if (px == i * 10 + 10 - k)
+                            {
+                                if (py + sy == j * 10 + 10 - k )
+                                {
+                                    py--;
+                                    grounded = true;
+                                }
+                                else if (py + sy == j * 10 + 10 - k - 2 )
+                                {
+                                    py++;
+                                    grounded = true;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

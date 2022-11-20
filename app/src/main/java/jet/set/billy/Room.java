@@ -19,6 +19,7 @@ public class Room
     BasicTextImage wall;
     BasicTextImage platform;
     BasicTextImage ladder;
+    BasicTextImage stairs_left;
 
     public int get_coord1()
     {
@@ -68,6 +69,9 @@ public class Room
 
         String ladder_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("sprites/ladder.txt").toURI()));
         ladder = text_to_sprite(ladder_string, TextColor.Factory.fromString("#004040"), TextColor.Factory.fromString("#005050"), null);
+
+        String stairs_left_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("sprites/stairs_left.txt").toURI()));
+        stairs_left = text_to_sprite(stairs_left_string, TextColor.ANSI.WHITE, null, null);
     }
 
     public void draw(TextGraphics tg)
@@ -88,6 +92,10 @@ public class Room
                 else if (room_layout.charAt(i + j*26) == 'H')
                 {
                     tg.drawImage(imagePosition, ladder, imagePosition.TOP_LEFT_CORNER, ladder.getSize());
+                }
+                else if (room_layout.charAt(i + j*26) == 's')
+                {
+                    tg.drawImage(imagePosition, stairs_left, imagePosition.TOP_LEFT_CORNER, stairs_left.getSize());
                 }
             }
         }

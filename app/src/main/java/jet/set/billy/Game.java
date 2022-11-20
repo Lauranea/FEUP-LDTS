@@ -76,7 +76,7 @@ public class Game
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
             room = new Room(room_string, room.get_coord1(), room.get_coord2() - 1, room_name);
 
-            player.set_position_x(235);
+            player.set_position_x(237);
             player.change_room(room_string);
         }
         else if (player.get_position_x() > 240)
@@ -85,7 +85,7 @@ public class Game
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
             room = new Room(room_string, room.get_coord1(), room.get_coord2() + 1, room_name);
             
-            player.set_position_x(5);
+            player.set_position_x(3);
             player.change_room(room_string);
         }
     }

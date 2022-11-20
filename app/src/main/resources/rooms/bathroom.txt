@@ -1,15 +1,15 @@
+xxxxxxxxxxxxxxxxxxxxxxxxx
+x                       x
+x                       x
                         x
                         x
                         x
                         x
-                        x
-                        x
-                        x
-xxxxx------------------Hx
-x                      Hx
-x                      Hx
-                       Hx
-                       Hx
+xxxxx----s ------------Hx
+x         s            Hx
+x          s           Hx
+            s          Hx
+             s         Hx
 xxxxxxxxxxxxxxxxxxxxxxxxx
 #########################
 #########################
