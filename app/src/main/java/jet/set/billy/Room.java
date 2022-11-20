@@ -58,7 +58,7 @@ public class Room
         platform = text_to_sprite(platform_string, TextColor.ANSI.GREEN, null, null);
 
         String ladder_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("sprites/ladder.txt").toURI()));
-        ladder = text_to_sprite(ladder_string, TextColor.Factory.fromString("#222222"), TextColor.Factory.fromString("#402222"), null);
+        ladder = text_to_sprite(ladder_string, TextColor.Factory.fromString("#004040"), TextColor.Factory.fromString("#005050"), null);
     }
 
     public String get_room_string()

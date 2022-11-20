@@ -41,7 +41,8 @@ public class Game
 
     Boolean run = true;
     
-    private AWTTerminalFontConfiguration loadFont() throws Exception {
+    private AWTTerminalFontConfiguration loadFont() throws Exception
+    {
         URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -89,6 +90,7 @@ public class Game
         
         String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/bathroom.txt").toURI()));
         room = new Room(room_string, 0, 0, "Bathroom");
+        
         player = new Player(250, 100, room);
 
         screen = new TerminalScreen(terminal);
