@@ -4,7 +4,7 @@ x                       x
                         x
                         x
                         x
-                        x
+ 1                   2  x
 xxxxx----s ------------Hx
 x         s            Hx
 x          s           Hx

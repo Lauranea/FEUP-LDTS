@@ -10,9 +10,11 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
+import java.util.Map;
 
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
@@ -46,7 +48,53 @@ public class Game
         new Vector<String>(Arrays.asList("Corridor", "Bathroom"))
     ));
 
+    Map<String, BasicTextImage> blocks = new HashMap<>();
+    Map<Integer, Enemy> enemies = new HashMap<>();
+
     Boolean run = true;
+
+    BasicTextImage text_to_sprite(String t, TextColor color_x, TextColor color_y, TextColor color_z)
+    {
+        BasicTextImage b = new BasicTextImage(10, 10);
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                if (t.charAt(i * 11 + j) == 'x')
+                {
+                    b.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', color_x, color_x)[0]);
+                }
+                else if (t.charAt(i * 11 + j) == 'y')
+                {
+                    b.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', color_y, color_y)[0]);
+                }
+                else if (t.charAt(i * 11 + j) == 'z')
+                {
+                    b.setCharacterAt(j, i, TextCharacter.fromCharacter(' ', color_z, color_z)[0]);
+                }
+            }
+        }
+        return b;
+    }
+
+    public Game() throws Exception
+    {
+        BasicTextImage wall = new BasicTextImage(10, 10);
+        wall.setAll(TextCharacter.fromCharacter(' ', TextColor.ANSI.RED, TextColor.ANSI.BLUE)[0]);
+        blocks.put("wall", wall);
+
+        String platform_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/platform.txt").toURI()));
+        blocks.put("platform", text_to_sprite(platform_string, TextColor.ANSI.GREEN, null, null));
+
+        String ladder_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/ladder.txt").toURI()));
+        blocks.put("ladder", text_to_sprite(ladder_string, TextColor.Factory.fromString("#004040"), TextColor.Factory.fromString("#005050"), null));
+
+        String stairs_left_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/stairs_left.txt").toURI()));
+        blocks.put("stairs_left", text_to_sprite(stairs_left_string, TextColor.ANSI.WHITE, null, null));
+
+        String stairs_right_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/stairs_right.txt").toURI()));
+        blocks.put("stairs_right", text_to_sprite(stairs_right_string, TextColor.ANSI.WHITE, null, null));
+    }
     
     // Criar pixeis pequenos
     private AWTTerminalFontConfiguration loadFont() throws Exception
@@ -75,7 +123,7 @@ public class Game
         {
             String room_name = rooms.get(room.get_coord1()).get(room.get_coord2() - 1);
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
-            room = new Room(room_string, room.get_coord1(), room.get_coord2() - 1, room_name);
+            room = new Room(room_string, room.get_coord1(), room.get_coord2() - 1, room_name, blocks);
 
             player.set_position_x(237);
             player.change_room(room_string);
@@ -84,10 +132,30 @@ public class Game
         {
             String room_name = rooms.get(room.get_coord1()).get(room.get_coord2() + 1);
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
-            room = new Room(room_string, room.get_coord1(), room.get_coord2() + 1, room_name);
+            room = new Room(room_string, room.get_coord1(), room.get_coord2() + 1, room_name, blocks);
             
             player.set_position_x(3);
             player.change_room(room_string);
+        }
+    }
+
+    void die() throws Exception
+    {
+        room = new Room(room.get_room_string(), room.get_coord1(), room.get_coord2(), room.get_room_name(), blocks);
+        player.die();
+    }
+
+    void check_if_dead() throws Exception
+    {
+        for(Enemy e : room.get_enemies())
+        {
+            if ((player.get_position_x() > e.get_position_x() && player.get_position_x() < e.get_position_x() + e.get_size_x()) || (player.get_position_x() + player.get_size_x() > e.get_position_x() && player.get_size_x() + player.get_position_x() < e.get_position_x() + e.get_size_x()))
+            {
+                if ((player.get_position_y() >= e.get_position_y() && player.get_position_y() <= e.get_position_y() + e.get_size_y()) || (player.get_position_y() + player.get_size_y() >= e.get_position_y() && player.get_size_y() + player.get_position_y() <= e.get_position_y() + e.get_size_y()))
+                {
+                    die();
+                }
+            }
         }
     }
 
@@ -119,7 +187,7 @@ public class Game
         });
         
         String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/Bathroom.txt").toURI()));
-        room = new Room(room_string, 0, 1, "Bathroom");
+        room = new Room(room_string, 0, 1, "Bathroom", blocks);
 
         player = new Player(200, 100, room_string);
 
@@ -132,11 +200,13 @@ public class Game
         while (run)
         {
             player.handle_input(pressedKeys);
+            check_if_dead();
 
             screen.clear();
 
             change_room();
 
+            room.update(tg);
             draw();
 
             screen.refresh();

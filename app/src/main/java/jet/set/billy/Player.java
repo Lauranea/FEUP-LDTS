@@ -26,7 +26,11 @@ public class Player
     int px; // position x
     int py; // position y
 
+    int safe_px;
+    int safe_py;
+
     String room_string;
+    Room room;
 
     Boolean grounded = false;
     int direction = 0; // 1 = right, -1 = left
@@ -71,6 +75,8 @@ public class Player
     {
         px = new_px;
         py = new_py;
+        safe_px = px;
+        safe_py = py;
 
         get_sprites();
 
@@ -104,6 +110,15 @@ public class Player
     public void set_position_y(int new_py)
     {
         py = new_py;
+    }
+
+    public int get_safe_position_x()
+    {
+        return safe_px;
+    }
+    public int get_safe_position_y()
+    {
+        return safe_py;
     }
 
     public void change_room(String new_room_string)
@@ -142,6 +157,13 @@ public class Player
             grounded = false;
             jumping = true;
         }
+    }
+
+    public void die()
+    {
+        px = safe_px;
+        py = safe_py;
+        jumping = false;
     }
 
     void advance_sprite()
@@ -310,7 +332,7 @@ public class Player
     {
         for (int i = 0; i < 25; i++)
         {
-            for (int j = 0; j < 15; j++)
+            for (int j = 0; j < 13; j++)
             {
                 if (room_string.charAt(i + j * 26) == 'x')
                 {
