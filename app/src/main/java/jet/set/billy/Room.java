@@ -20,6 +20,7 @@ public class Room
     BasicTextImage platform;
     BasicTextImage ladder;
     BasicTextImage stairs_left;
+    BasicTextImage stairs_right;
 
     public int get_coord1()
     {
@@ -72,6 +73,9 @@ public class Room
 
         String stairs_left_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("sprites/stairs_left.txt").toURI()));
         stairs_left = text_to_sprite(stairs_left_string, TextColor.ANSI.WHITE, null, null);
+
+        String stairs_right_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("sprites/stairs_right.txt").toURI()));
+        stairs_right = text_to_sprite(stairs_right_string, TextColor.ANSI.WHITE, null, null);
     }
 
     public void draw(TextGraphics tg)
@@ -96,6 +100,10 @@ public class Room
                 else if (room_layout.charAt(i + j*26) == 's')
                 {
                     tg.drawImage(imagePosition, stairs_left, imagePosition.TOP_LEFT_CORNER, stairs_left.getSize());
+                }
+                else if (room_layout.charAt(i + j*26) == 'z')
+                {
+                    tg.drawImage(imagePosition, stairs_right, imagePosition.TOP_LEFT_CORNER, stairs_right.getSize());
                 }
             }
         }

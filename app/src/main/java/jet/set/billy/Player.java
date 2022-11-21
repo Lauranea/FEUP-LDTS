@@ -344,21 +344,50 @@ public class Player
 
     Boolean collision_stairs_left(int i, int j)
     {
-        if (!jumping && !fall_after_jump && ((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)))
+        if ((!jumping && !fall_after_jump || direction == 0) && ((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)))
         {
             for (int k = 0; k < 10; k ++)
             {
                 if (px == i * 10 + 10 - k)
                 {
-                    if (py + sy == j * 10 + 10 - k )
+                    if (py + sy >= j * 10 + 10 - k && py + sy <= j * 10 + 12 - k)
                     {
                         py--;
                         grounded = true;
+                        return true;
+                    }
+                    else if (py + sy == j * 10 + 10 - k - 2)
+                    {
+                        py++;
+                        grounded = true;
+                        jumping = false;
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    Boolean collision_stairs_right(int i, int j)
+    {
+        if ((!jumping && !fall_after_jump || direction == 0) && ((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)))
+        {
+            for (int k = 0; k < 10; k ++)
+            {
+                if (px + sx == i * 10 + k)
+                {
+                    if (py + sy >= j * 10 + 10 - k && py + sy <= j * 10 + 12 - k)
+                    {
+                        py--;
+                        grounded = true;
+                        jumping = false;
                     }
                     else if (py + sy == j * 10 + 10 - k - 2 )
                     {
                         py++;
                         grounded = true;
+                        jumping = false;
                     }
                     return true;
                 }
@@ -391,6 +420,10 @@ public class Player
                 else if (room_string.charAt(i + j * 26) == 's')
                 {
                     collision_stairs_left(i, j);
+                }
+                else if (room_string.charAt(i + j * 26) == 'z')
+                {
+                    collision_stairs_right(i, j);
                 }
             }
         }
