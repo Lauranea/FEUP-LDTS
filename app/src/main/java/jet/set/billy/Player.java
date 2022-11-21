@@ -40,12 +40,12 @@ public class Player
     Boolean jumping = false;
     int jump_height = 0;
     Boolean fall_after_jump = false;
-    int jump_index = 13;
+    int jump_index = 5;
     int close_to_fall = 5;
 
     Vector<Integer> jump = new Vector<Integer>(Arrays.asList
     (
-        3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1
+        3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1
     ));
 
     LinkedList<String> sprites_left = new LinkedList<String>();
@@ -263,9 +263,9 @@ public class Player
 
     void move_y(Boolean j)
     {
-        if (jump_index > 13)
+        if (jump_index > 14)
         {
-            jump_index = 13;
+            jump_index = 14;
         }
         else if (jump_index < 0)
         {
@@ -292,7 +292,7 @@ public class Player
 
     Boolean collision_ground(int i, int j)
     {
-        if (!jumping && ((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py + sy >= j * 10 && py + sy < j * 10 + 5))
+        if (!jumping && ((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py + sy >= j * 10 && py + sy < j * 10 + 3))
         {
             if (py + sy > j * 10)
             {
@@ -306,7 +306,7 @@ public class Player
 
     Boolean collision_ceiling(int i, int j)
     {
-        if (((px > i * 10 - 1 && px < i * 10 + 11) || (px + sx > i * 10 - 1 && px + sx < i * 10 + 11)) && (py <= j * 10 + 10 && py > j * 10 + 5))
+        if (((px >= i * 10 && px < i * 10 + 10) || (px + sx > i * 10 && px + sx <= i * 10)) && (py <= j * 10 + 10 && py > j * 10 + 5))
         {
             if (jump_index < 10)
             {
@@ -434,7 +434,7 @@ public class Player
         if (grounded)
         {
             close_to_fall = 5;
-            jump_index = 13;
+            jump_index = 15;
             fall_after_jump = false;
             jump_height = 0;
             direction = 0;
@@ -463,7 +463,7 @@ public class Player
             if (jumping)
             {
                 fall_after_jump = true;
-                if (jump_height < 14)
+                if (jump_height < 15)
                 {
                     move_y(true);
                     jump_height++;
