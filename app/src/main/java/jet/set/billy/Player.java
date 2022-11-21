@@ -51,109 +51,19 @@ public class Player
     LinkedList<String> sprites_left = new LinkedList<String>();
     LinkedList<String> sprites_right = new LinkedList<String>();
 
-    void get_sprites()
+    void get_sprites() throws Exception
     {
-        String player_image_string =  "   xxxx   "+
-                                      "   xxxx   "+
-                                      "  xxxxxx  "+
-                                      "   x xx   "+
-                                      "  xxxxx   "+
-                                      "   xxxx   "+
-                                      "    xx    "+
-                                      "   xxxx   "+
-                                      "  xxx xx  "+
-                                      "  xxx xx  "+
-                                      "  xxx xx  "+
-                                      "  xx xxx  "+
-                                      "   xxxx   "+
-                                      "    xx    "+
-                                      "    xx    "+
-                                      "   xxx    ";
+        String player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/left_1.txt").toURI()));
         sprites_left.add(player_image_string);
-        player_image_string = "   xxxx   "+
-                              "   xxxx   "+
-                              "  xxxxxx  "+
-                              "   x xx   "+
-                              "  xxxxx   "+
-                              "   xxxx   "+
-                              "    xx    "+
-                              "   xxxx   "+
-                              "  xxxxxx  "+
-                              "  xxxxxx  "+
-                              " xxx xxxx "+
-                              " xx xxxxx "+
-                              "   xxxx   "+
-                              "  xx xxx  "+
-                              "  xxx xx  "+
-                              " xxx xxx  ";
+        player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/left_2.txt").toURI()));
         sprites_left.add(player_image_string);
-        player_image_string = "   xxxx   "+
-                              "   xxxx   "+
-                              "  xxxxxx  "+
-                              "   x xx   "+
-                              "  xxxxx   "+
-                              "   xxxx   "+
-                              "    xx    "+
-                              "   xxxx   "+
-                              "  xxxxxx  "+
-                              " xxxxxxxx "+
-                              "xxxxxxxxxx"+
-                              "xx xxxx xx"+
-                              "   xxxx   "+
-                              "x  xx xxx "+
-                              "xxxx    xx"+
-                              " xxx   xxx";
+        player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/left_3.txt").toURI()));
         sprites_left.add(player_image_string);
-        player_image_string = "   xxxx   "+
-                              "   xxxx   "+
-                              "  xxxxxx  "+
-                              "   xx x   "+
-                              "   xxxxx  "+
-                              "   xxxx   "+
-                              "    xx    "+
-                              "   xxxx   "+
-                              "  xx xxx  "+
-                              "  xx xxx  "+
-                              "  xx xxx  "+
-                              "  xxx xx  "+
-                              "   xxxx   "+
-                              "    xx    "+
-                              "    xx    "+
-                              "    xxx   ";
+        player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/right_1.txt").toURI()));
         sprites_right.add(player_image_string);
-        player_image_string = "   xxxx   "+
-                              "   xxxx   "+
-                              "  xxxxxx  "+
-                              "   xx x   "+
-                              "   xxxxx  "+
-                              "   xxxx   "+
-                              "    xx    "+
-                              "   xxxx   "+
-                              "  xxxxxx  "+
-                              "  xxxxxx  "+
-                              " xxxx xxx "+
-                              " xxxxx xx "+
-                              "   xxxx   "+
-                              "  xxx xx  "+
-                              "  xx xxx  "+
-                              "  xxx xxx ";
+        player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/right_2.txt").toURI()));
         sprites_right.add(player_image_string);
-        player_image_string = "   xxxx   "+
-                              "   xxxx   "+
-                              "  xxxxxx  "+
-                              "   xx x   "+
-                              "   xxxxx  "+
-                              "   xxxx   "+
-                              "    xx    "+
-                              "   xxxx   "+
-                              "  xxxxxx  "+
-                              " xxxxxxxx "+
-                              "xxxxxxxxxx"+
-                              "xx xxxx xx"+
-                              "   xxxx   "+
-                              " xxx xx  x"+
-                              "xx    xxxx"+
-                              "xxx   xxx ";
+        player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/right_3.txt").toURI()));
         sprites_right.add(player_image_string);
     }
 
@@ -207,7 +117,7 @@ public class Player
         {
             for (int j = 0; j < sx; j++)
             {
-                if (current_sprite.charAt(i * sx + j) == 'x')
+                if (current_sprite.charAt(i * (sx + 1) + j) == 'x')
                 {
                     tg.setCharacter(px + j, py + i,  TextCharacter.fromCharacter(' ', TextColor.ANSI.WHITE, TextColor.ANSI.WHITE)[0]);
                 }

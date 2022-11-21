@@ -65,16 +65,16 @@ public class Room
         wall = new BasicTextImage(10, 10);
         wall.setAll(TextCharacter.fromCharacter(' ', TextColor.ANSI.RED, TextColor.ANSI.BLUE)[0]);
 
-        String platform_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("sprites/platform.txt").toURI()));
+        String platform_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/platform.txt").toURI()));
         platform = text_to_sprite(platform_string, TextColor.ANSI.GREEN, null, null);
 
-        String ladder_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("sprites/ladder.txt").toURI()));
+        String ladder_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/ladder.txt").toURI()));
         ladder = text_to_sprite(ladder_string, TextColor.Factory.fromString("#004040"), TextColor.Factory.fromString("#005050"), null);
 
-        String stairs_left_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("sprites/stairs_left.txt").toURI()));
+        String stairs_left_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/stairs_left.txt").toURI()));
         stairs_left = text_to_sprite(stairs_left_string, TextColor.ANSI.WHITE, null, null);
 
-        String stairs_right_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("sprites/stairs_right.txt").toURI()));
+        String stairs_right_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/stairs_right.txt").toURI()));
         stairs_right = text_to_sprite(stairs_right_string, TextColor.ANSI.WHITE, null, null);
     }
 
