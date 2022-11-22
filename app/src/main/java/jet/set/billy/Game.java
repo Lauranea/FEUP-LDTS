@@ -84,15 +84,19 @@ public class Game
         blocks.put("wall", wall);
 
         String platform_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/platform.txt").toURI()));
+        platform_string = platform_string.replaceAll("\r", "");
         blocks.put("platform", text_to_sprite(platform_string, TextColor.ANSI.GREEN, null, null));
 
         String ladder_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/ladder.txt").toURI()));
+        ladder_string = ladder_string.replaceAll("\r", "");
         blocks.put("ladder", text_to_sprite(ladder_string, TextColor.Factory.fromString("#004040"), TextColor.Factory.fromString("#005050"), null));
 
         String stairs_left_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/stairs_left.txt").toURI()));
+        stairs_left_string = stairs_left_string.replaceAll("\r", "");
         blocks.put("stairs_left", text_to_sprite(stairs_left_string, TextColor.ANSI.WHITE, null, null));
 
         String stairs_right_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/stairs_right.txt").toURI()));
+        stairs_right_string = stairs_right_string.replaceAll("\r", "");
         blocks.put("stairs_right", text_to_sprite(stairs_right_string, TextColor.ANSI.WHITE, null, null));
     }
     
@@ -123,6 +127,7 @@ public class Game
         {
             String room_name = rooms.get(room.get_coord1()).get(room.get_coord2() - 1);
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
+            room_string = room_string.replaceAll("\r", "");
             room = new Room(room_string, room.get_coord1(), room.get_coord2() - 1, room_name, blocks);
 
             player.set_position_x(237);
@@ -132,6 +137,7 @@ public class Game
         {
             String room_name = rooms.get(room.get_coord1()).get(room.get_coord2() + 1);
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
+            room_string = room_string.replaceAll("\r", "");
             room = new Room(room_string, room.get_coord1(), room.get_coord2() + 1, room_name, blocks);
             
             player.set_position_x(3);
@@ -187,6 +193,7 @@ public class Game
         });
         
         String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/Bathroom.txt").toURI()));
+        room_string = room_string.replaceAll("\r", "");
         room = new Room(room_string, 0, 1, "Bathroom", blocks);
 
         player = new Player(200, 100, room_string);

@@ -69,6 +69,7 @@ public class Room
                             {
                                 System.out.println(i+","+j+","+ii+","+jj);
                                 String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/murderous_block.txt").toURI()));
+                                enemyString = enemyString.replaceAll("\r", "");
                                 enemies.add(new Enemy(i*10, j*10, ii*10, jj*10, true, 1, enemyString, 10, 10));
                             }
                         }
