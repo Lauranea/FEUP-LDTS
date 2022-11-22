@@ -92,7 +92,18 @@ public class Enemy
                 {
                     py-=speed;
                 }
-            }    
+            }   
+            else
+            {
+                if (py > py2)
+                {
+                    py = py1;
+                }
+                else
+                {
+                    py+=speed;
+                }
+            } 
         }
         else if (py1 == py2)
         {
@@ -114,7 +125,18 @@ public class Enemy
                 {
                     px-=speed;
                 }
-            }    
+            }   
+            else
+            {
+                if (px > px2)
+                {
+                    px = px1;
+                }
+                else
+                {
+                    px+=speed;
+                }
+            }  
         }
         
     }

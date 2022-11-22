@@ -2,7 +2,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxx
 x                       x
 x                       x
 x                       x
-                        x
+  3                     x
                         x
   1   2    1          2 x
 xxxxxxx   zxxxxxxxxxxxxxx

@@ -156,24 +156,24 @@ public class Game
             player.set_position_x(3);
             player.change_room(room_string);
         }
-        else if (player.get_position_y() > 120)
+        else if (player.get_position_y() > 115)
         {
             String room_name = rooms.get(room.get_coord1() + 1).get(room.get_coord2());
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
             room_string = room_string.replaceAll("\r", "");
             room = new Room(room_string, room.get_coord1() + 1, room.get_coord2(), room_name, blocks);
             
-            player.set_position_y(3);
+            player.set_position_y(-5);
             player.change_room(room_string);
         }
-        else if (player.get_position_y() < 0)
+        else if (player.get_position_y() < -10)
         {
             String room_name = rooms.get(room.get_coord1() - 1).get(room.get_coord2());
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
             room_string = room_string.replaceAll("\r", "");
             room = new Room(room_string, room.get_coord1() - 1, room.get_coord2(), room_name, blocks);
             
-            player.set_position_y(117);
+            player.set_position_y(107);
             player.change_room(room_string);
         }
     }

@@ -252,7 +252,7 @@ public class Player
 
     Boolean collision_ceiling(int i, int j)
     {
-        if (((px >= i * 10 && px < i * 10 + 10) || (px + sx > i * 10 && px + sx <= i * 10)) && (py <= j * 10 + 10 && py > j * 10 + 5))
+        if (((px >= i * 10 && px < i * 10 + 10) || (px + sx > i * 10 && px + sx <= i * 10 + 10)) && (py <= j * 10 + 10 && py > j * 10 + 5))
         {
             if (jump_index < 10)
             {
