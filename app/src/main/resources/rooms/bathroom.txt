@@ -1,13 +1,13 @@
 xxxxxxxxxxxxxxxxxxxxxxxxx
 x                       x
 x                       x
+x                       x
                         x
                         x
-                        x
-  1                  2  x
-xxxxx---- z-------------x
-x        z              x
-x       z               x
+  1   2    1          2 x
+xxxxxxx   zxxxxxxxxxxxxxx
+x        z x            x
+x       z  x            x
        z                x
       z                tx
 xxxxxxxxxxxxxxxxxxxxxxxxx

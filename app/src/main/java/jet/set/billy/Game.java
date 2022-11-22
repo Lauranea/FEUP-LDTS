@@ -229,7 +229,7 @@ public class Game
         room_string = room_string.replaceAll("\r", "");
         room = new Room(room_string, 0, 1, "Bathroom", blocks);
 
-        player = new Player(200, 100, room_string);
+        player = new Player(150, 100, room_string);
 
         screen = new TerminalScreen(terminal);
         tg = screen.newTextGraphics();

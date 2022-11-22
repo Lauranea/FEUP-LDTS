@@ -63,16 +63,23 @@ public class Room
             {
                 if (room_layout.charAt(i + j * 26) == '1')
                 {
-                    for (int ii = 0; ii < 25; ii++)
+                    for (int ii = i; ii < 25; ii++)
                     {
-                        for (int jj = 0; jj < 13; jj++)
+                        Boolean found = false;
+                        for (int jj = j; jj < 13; jj++)
                         {
                             if (room_layout.charAt(ii + jj * 26) == '2')
                             {
                                 String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/murderous_block.txt").toURI()));
                                 enemyString = enemyString.replaceAll("\r", "");
                                 enemies.add(new Enemy(i*10, j*10, ii*10, jj*10, true, 1, enemyString, 10, 10));
+                                found = true;
+                                break;
                             }
+                        }
+                        if (found)
+                        {
+                            break;
                         }
                     }
                 }
