@@ -330,9 +330,9 @@ public class Player
 
     void collision()
     {
-        for (int i = 0; i < 25; i++)
+        for (int i = px / 10 - 1; i * 10 <= px + sx + 10; i++)
         {
-            for (int j = 0; j < 13; j++)
+            for (int j = py / 10 - 1; j * 10 <= py + sy + 10; j++)
             {
                 if (room_string.charAt(i + j * 26) == 'x')
                 {
