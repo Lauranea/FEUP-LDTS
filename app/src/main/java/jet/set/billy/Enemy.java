@@ -74,10 +74,8 @@ public class Enemy
     {
         if (px1 == px2)
         {
-            System.out.println("px1 == px2");
             if (boomerang)
             {
-                System.out.println("boom");
                 if (py > py2)
                 {
                     f = false;
@@ -98,10 +96,8 @@ public class Enemy
         }
         else if (py1 == py2)
         {
-            System.out.println("py1 == py2");
             if (boomerang)
             {
-                System.out.println("boom");
                 if (px > px2)
                 {
                     f = false;

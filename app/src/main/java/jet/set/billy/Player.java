@@ -58,16 +58,22 @@ public class Player
     void get_sprites() throws Exception
     {
         String player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/left_1.txt").toURI()));
+        player_image_string = player_image_string.replaceAll("\r", "");
         sprites_left.add(player_image_string);
         player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/left_2.txt").toURI()));
+        player_image_string = player_image_string.replaceAll("\r", "");
         sprites_left.add(player_image_string);
         player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/left_3.txt").toURI()));
+        player_image_string = player_image_string.replaceAll("\r", "");
         sprites_left.add(player_image_string);
         player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/right_1.txt").toURI()));
+        player_image_string = player_image_string.replaceAll("\r", "");
         sprites_right.add(player_image_string);
         player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/right_2.txt").toURI()));
+        player_image_string = player_image_string.replaceAll("\r", "");
         sprites_right.add(player_image_string);
         player_image_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("player/right_3.txt").toURI()));
+        player_image_string = player_image_string.replaceAll("\r", "");
         sprites_right.add(player_image_string);
     }
 
@@ -330,10 +336,19 @@ public class Player
 
     void collision()
     {
-        for (int i = px / 10 - 1; i * 10 <= px + sx + 10; i++)
+
+        for (int i = 0 ; i * 10 <= px + sx + 10; i++)
         {
-            for (int j = py / 10 - 1; j * 10 <= py + sy + 10; j++)
+            if (i * 10 + 10 < px)
             {
+                continue;
+            }
+            for (int j = 0; j * 10 <= py + sy + 10; j++)
+            {
+                if (j * 10 + 10 < py)
+                {
+                    continue;
+                }
                 if (room_string.charAt(i + j * 26) == 'x')
                 {
                     if (!collision_ground(i, j))
