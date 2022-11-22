@@ -1,15 +1,15 @@
    xxxx   
    xxxx   
   xxxxxx  
-   x xx   
+   x-xx   
   xxxxx   
    xxxx   
     xx    
    xxxx   
-  xxx xx  
-  xxx xx  
-  xxx xx  
-  xx xxx  
+  xxx-xx  
+  xxx-xx  
+  xxx-xx  
+  xx-xxx  
    xxxx   
     xx    
     xx    

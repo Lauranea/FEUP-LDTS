@@ -130,6 +130,8 @@ public class Player
     public void change_room(String new_room_string)
     {
         room_string = new_room_string;
+        safe_px = px;
+        safe_py = py;
     }
 
     public void draw(TextGraphics tg)
@@ -141,6 +143,10 @@ public class Player
                 if (current_sprite.charAt(i * (sx + 1) + j) == 'x')
                 {
                     tg.setCharacter(px + j, py + i,  TextCharacter.fromCharacter(' ', TextColor.ANSI.WHITE, TextColor.ANSI.WHITE)[0]);
+                }
+                else if (current_sprite.charAt(i * (sx + 1) + j) == '-')
+                {
+                    tg.setCharacter(px + j, py + i,  TextCharacter.fromCharacter(' ', TextColor.ANSI.BLACK, TextColor.ANSI.BLACK)[0]);
                 }
             }
         }
@@ -170,6 +176,8 @@ public class Player
         px = safe_px;
         py = safe_py;
         jumping = false;
+        fall_after_jump = false;
+        grounded = true;
     }
 
     void advance_sprite()

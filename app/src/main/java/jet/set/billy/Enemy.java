@@ -64,7 +64,7 @@ public class Enemy
             {
                 if (sprite_string.charAt(i * (sx + 1) + j) == 'x')
                 {
-                    tg.setCharacter(px + j, py + i,  TextCharacter.fromCharacter(' ', TextColor.ANSI.WHITE, TextColor.ANSI.WHITE)[0]);
+                    tg.setCharacter(px + j, py + i,  TextCharacter.fromCharacter(' ', TextColor.ANSI.RED, TextColor.ANSI.RED)[0]);
                 }
             }
         }
