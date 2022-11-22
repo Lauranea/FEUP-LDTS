@@ -21,6 +21,8 @@ public class Room
 
     Map<String, BasicTextImage> blocks;
 
+    int sprite_time = 0;
+
     List<Enemy> enemies = new ArrayList<Enemy>();
 
     public int get_coord1()
@@ -67,7 +69,6 @@ public class Room
                         {
                             if (room_layout.charAt(ii + jj * 26) == '2')
                             {
-                                System.out.println(i+","+j+","+ii+","+jj);
                                 String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/murderous_block.txt").toURI()));
                                 enemyString = enemyString.replaceAll("\r", "");
                                 enemies.add(new Enemy(i*10, j*10, ii*10, jj*10, true, 1, enemyString, 10, 10));
@@ -106,7 +107,27 @@ public class Room
                 {
                     tg.drawImage(imagePosition, blocks.get("stairs_right"), imagePosition.TOP_LEFT_CORNER, blocks.get("stairs_right").getSize());
                 }
+                else if (room_layout.charAt(i + j*26) == 't')
+                {
+                    if (sprite_time < 2)
+                    {
+                        tg.drawImage(imagePosition, blocks.get("toilet_1"), imagePosition.TOP_LEFT_CORNER, blocks.get("toilet_1").getSize());
+                    }
+                    else if (sprite_time < 4)
+                    {
+                        tg.drawImage(imagePosition, blocks.get("toilet_2"), imagePosition.TOP_LEFT_CORNER, blocks.get("toilet_2").getSize());
+                    }
+                    else
+                    {
+                        tg.drawImage(imagePosition, blocks.get("toilet_3"), imagePosition.TOP_LEFT_CORNER, blocks.get("toilet_3").getSize());
+                    }
+                }
             }
+        }
+        sprite_time++;
+        if (sprite_time > 5)
+        {
+            sprite_time = 0;
         }
     }
 

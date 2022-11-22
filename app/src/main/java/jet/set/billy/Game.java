@@ -99,6 +99,18 @@ public class Game
         String stairs_right_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/stairs_right.txt").toURI()));
         stairs_right_string = stairs_right_string.replaceAll("\r", "");
         blocks.put("stairs_right", text_to_sprite(stairs_right_string, TextColor.ANSI.WHITE, null, null));
+
+        String toilet_string_1 = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/toilet_1.txt").toURI()));
+        toilet_string_1 = toilet_string_1.replaceAll("\r", "");
+        blocks.put("toilet_1", text_to_sprite(toilet_string_1, TextColor.ANSI.WHITE, null, null));
+
+        String toilet_string_2 = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/toilet_2.txt").toURI()));
+        toilet_string_2 = toilet_string_2.replaceAll("\r", "");
+        blocks.put("toilet_2", text_to_sprite(toilet_string_2, TextColor.ANSI.WHITE, null, null));
+
+        String toilet_string_3 = Files.readString(Paths.get(getClass().getClassLoader().getResource("blocks/toilet_3.txt").toURI()));
+        toilet_string_3 = toilet_string_3.replaceAll("\r", "");
+        blocks.put("toilet_3", text_to_sprite(toilet_string_3, TextColor.ANSI.WHITE, null, null));
     }
     
     // Criar pixeis pequenos
