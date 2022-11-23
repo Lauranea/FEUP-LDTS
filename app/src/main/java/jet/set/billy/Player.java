@@ -29,8 +29,6 @@ public class Player
     int safe_px;
     int safe_py;
 
-    Room room;
-
     LinkedList<String> sprites_left = new LinkedList<String>();
     LinkedList<String> sprites_right = new LinkedList<String>();
 
@@ -58,7 +56,7 @@ public class Player
         sprites_right.add(player_image_string);
     }
 
-    public Player(int new_px, int new_py, Room nroom) throws Exception
+    public Player(int new_px, int new_py) throws Exception
     {
         px = new_px;
         py = new_py;
@@ -68,8 +66,6 @@ public class Player
         get_sprites();
 
         current_sprite = sprites_left.get(0);
-        
-        room = nroom;
     }
 
     public int get_size_x()
@@ -108,16 +104,18 @@ public class Player
         return safe_py;
     }
 
+    public void set_safe_position_x(int nsafe_px)
+    {
+        safe_px = nsafe_px;
+    }
+    public void set_safe_position_y(int nsafe_py)
+    {
+        safe_py = nsafe_py;
+    }
+
     public String get_current_sprite()
     {
         return current_sprite;
-    }
-
-    public void change_room(Room nroom)
-    {
-        room = nroom;
-        safe_px = px;
-        safe_py = py;
     }
 
     public void change_sprite_left(int direction_level)
