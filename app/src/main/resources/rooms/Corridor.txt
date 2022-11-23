@@ -2,14 +2,14 @@ xxxxxxxxxxxxxxxxxxxxxxxxx
 x                       x
 x                       x
 x                        
-x                 x      
-x                xxx     
-x               xxxxx    
-xxxxxxxx    xxxxxxxxxxxxx
+x                xx      
+x               xxxx     
+x              xxxxxx    
+xxxxxxxx    xxxx    xxxxx
 x                        
 x                        
 x                        
-x                        
+x                 6      
 xxxxxxxxs   xxxxxxxxxxxxx
 #########################
 #########################

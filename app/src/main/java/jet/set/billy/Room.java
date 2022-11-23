@@ -66,21 +66,11 @@ public class Room
                 {
                     for (int ii = i; ii < 25; ii++)
                     {
-                        Boolean found = false;
-                        for (int jj = j; jj < 13; jj++)
+                        if (room_layout.charAt(ii + j * 26) == '2')
                         {
-                            if (room_layout.charAt(ii + jj * 26) == '2')
-                            {
-                                System.out.print(i+","+j+" "+ii+","+jj);
-                                String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/murderous_block.txt").toURI()));
-                                enemyString = enemyString.replaceAll("\r", "");
-                                enemies.add(new Enemy(i*10, j*10, ii*10, jj*10, true, 1, enemyString, 10, 10));
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (found)
-                        {
+                            String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/guba.txt").toURI()));
+                            enemyString = enemyString.replaceAll("\r", "");
+                            enemies.add(new Enemy(i*10, j*10, ii*10, j*10, true, 1, enemyString, 10, 10));
                             break;
                         }
                     }
@@ -96,6 +86,18 @@ public class Room
                     String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/arrow.txt").toURI()));
                     enemyString = enemyString.replaceAll("\r", "");
                     enemies.add(new Enemy(270, j*10, -20, j*10, false, 2, enemyString, 10, 3));
+                }
+                else if (room_layout.charAt(i + j * 26) == '5') // smol cactus
+                {
+                    String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/smol_cactus.txt").toURI()));
+                    enemyString = enemyString.replaceAll("\r", "");
+                    enemies.add(new Enemy(i*10, j*10+5, 0, 0, false, 0, enemyString, 6, 5));
+                }
+                else if (room_layout.charAt(i + j * 26) == '6') // beeg cactus
+                {
+                    String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/beeg_cactus.txt").toURI()));
+                    enemyString = enemyString.replaceAll("\r", "");
+                    enemies.add(new Enemy(i*10, j*10-3, 0, 0, false, 0, enemyString, 10, 13));
                 }
             }
         }
