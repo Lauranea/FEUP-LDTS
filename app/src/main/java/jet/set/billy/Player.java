@@ -357,7 +357,7 @@ public class Player
                 {
                     continue;
                 }
-                if (room_string.charAt(i + j * 26) == 'x')
+                if (room_string.charAt(i + j * 26) == 'x' || room_string.charAt(i + j * 26) == 't')
                 {
                     if (!collision_ground(i, j))
                     {
