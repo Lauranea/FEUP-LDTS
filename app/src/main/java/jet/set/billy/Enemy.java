@@ -38,6 +38,24 @@ public class Enemy
         boomerang = nboomerang;
     }
 
+    public Boolean get_f()
+    {
+        return f;
+    }
+    public void set_f(Boolean nf)
+    {
+        f = nf;
+    }
+
+    public void set_position_x(int npx)
+    {
+        px = npx;
+    }
+    public void set_position_y(int npy)
+    {
+        py = npy;
+    }
+
     public int get_position_x()
     {
         return px;
@@ -45,6 +63,24 @@ public class Enemy
     public int get_position_y()
     {
         return py;
+    }
+
+    public int get_position_x1()
+    {
+        return px1;
+    }
+    public int get_position_y1()
+    {
+        return py1;
+    }
+
+    public int get_position_x2()
+    {
+        return px2;
+    }
+    public int get_position_y2()
+    {
+        return py2;
     }
 
     public int get_size_x()
@@ -56,88 +92,17 @@ public class Enemy
         return sy;
     }
 
-    public void draw(TextGraphics tg)
+    public String get_sprite_string()
     {
-        for (int i = 0; i < sy; i++)
-        {
-            for (int j = 0; j < sx; j++)
-            {
-                if (sprite_string.charAt(i * (sx + 1) + j) == 'x')
-                {
-                    tg.setCharacter(px + j, py + i,  TextCharacter.fromCharacter(' ', TextColor.ANSI.RED, TextColor.ANSI.RED)[0]);
-                }
-            }
-        }
+        return sprite_string;
     }
 
-    public void move()
+    public Boolean is_boomerang()
     {
-        if (px1 == px2)
-        {
-            if (boomerang)
-            {
-                if (py > py2)
-                {
-                    f = false;
-                }
-                else if (py < py1)
-                {
-                    f = true;
-                }
-                if (f)
-                {
-                    py+=speed;
-                }
-                else
-                {
-                    py-=speed;
-                }
-            }   
-            else
-            {
-                if (py > py2)
-                {
-                    py = py1;
-                }
-                else
-                {
-                    py+=speed;
-                }
-            } 
-        }
-        else if (py1 == py2)
-        {
-            if (boomerang)
-            {
-                if (px > px2)
-                {
-                    f = false;
-                }
-                else if (px < px1)
-                {
-                    f = true;
-                }
-                if (f)
-                {
-                    px+=speed;
-                }
-                else
-                {
-                    px-=speed;
-                }
-            }   
-            else
-            {
-                if (px > px2)
-                {
-                    px = px1;
-                }
-                else
-                {
-                    px+=speed;
-                }
-            }  
-        }
-        
+        return boomerang;
+    }
+    public int get_speed()
+    {
+        return speed;
     }
 }
