@@ -53,6 +53,11 @@ public class Room
         coord2 = nc2;
         name = nname;
 
+        initialize_enemies();
+    }
+
+    void initialize_enemies() throws Exception
+    {
         for (int i = 0; i < 25; i++)
         {
             for (int j = 0; j < 13; j++)
