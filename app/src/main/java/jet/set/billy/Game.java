@@ -37,13 +37,14 @@ import jet.set.billy.state.State;
 
 public class Game
 {
-    State state = new State();
+    State state;
 
-    Gui gui = new Gui();
+    Gui gui;
 
     public Game() throws Exception
     {
-        
+        state = new State();
+        gui = new Gui();
     }
 
     public void run() throws Exception
