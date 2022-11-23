@@ -4,12 +4,12 @@ x
 x              1   2     
 x           H-----------x
 x           H           x
-x---        H           x
-            H           X
-   -s   ----H           X
-     s                  X
-      s                 X
-       s                X
+x  3        H           x
+x           H           x
+x---s  ----------  z----x
+     s            z      
+      s          z       
+       s1      2z        
 xxxxxxxxxxxxxxxxxxxxxxxxx
 #########################
 #########################
