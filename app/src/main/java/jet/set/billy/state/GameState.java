@@ -48,8 +48,8 @@ public class GameState
         check_if_dead();
         change_room();
         
-        controller.step(gui.get_pressedKeys(), player, room, room.get_enemies());
-        viewer.step(gui, player, room, room.get_enemies());
+        controller.step(gui.get_pressedKeys(), player, room);
+        viewer.step(gui, player, room);
     }
 
     void change_room() throws Exception

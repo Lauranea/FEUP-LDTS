@@ -18,11 +18,11 @@ public class Viewer
     RoomViewer roomViewer = new RoomViewer();
     PlayerViewer playerViewer = new PlayerViewer();
 
-    public void step(Gui gui, Player player, Room room, List<Enemy> enemies) throws Exception
+    public void step(Gui gui, Player player, Room room) throws Exception
     {
         gui.clear();
         roomViewer.draw(gui, room);
-        enemyViewer.draw(gui, enemies);
+        enemyViewer.draw(gui, room.get_enemies());
         playerViewer.draw(gui, player);
         gui.refresh();
     }    

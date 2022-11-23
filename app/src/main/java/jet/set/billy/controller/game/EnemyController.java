@@ -20,11 +20,11 @@ public class EnemyController
                 }
                 if (e.get_f())
                 {
-                    e.set_position_y(e.get_position_y()+1);
+                    e.set_position_y(e.get_position_y()+e.get_speed());
                 }
                 else
                 {
-                    e.set_position_y(e.get_position_y()-1);
+                    e.set_position_y(e.get_position_y()-e.get_speed());
                 }
             }   
             else
@@ -35,42 +35,42 @@ public class EnemyController
                 }
                 else
                 {
-                    py+=speed;
+                    e.set_position_y(e.get_position_y()+e.get_speed());
                 }
             } 
         }
-        else if (py1 == py2)
+        else if (e.get_position_y1() == e.get_position_y2())
         {
-            if (boomerang)
+            if (e.is_boomerang())
             {
-                if (px > px2)
+                if (e.get_position_x() > e.get_position_x2())
                 {
-                    f = false;
+                    e.set_f(false);
                 }
-                else if (px < px1)
+                else if (e.get_position_x() < e.get_position_x1())
                 {
-                    f = true;
+                    e.set_f(true);
                 }
-                if (f)
+                if (e.get_f())
                 {
-                    px+=speed;
+                    e.set_position_x(e.get_position_x()+e.get_speed());
                 }
                 else
                 {
-                    px-=speed;
+                    e.set_position_x(e.get_position_x()-e.get_speed());
                 }
             }   
             else
             {
-                if (px > px2)
+                if (e.get_position_x() > e.get_position_x2())
                 {
-                    px = px1;
+                    e.set_position_x(e.get_position_x());
                 }
                 else
                 {
-                    px+=speed;
+                    e.set_position_x(e.get_position_x()+e.get_speed());
                 }
-            }  
+            } 
         }
     }
 }
