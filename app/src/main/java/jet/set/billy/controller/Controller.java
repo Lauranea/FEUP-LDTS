@@ -16,8 +16,6 @@ public class Controller
     EnemyController enemyController = new EnemyController();
     RoomController roomController;
 
-    Room current_room;
-
     public void step(Set<Character> pressedKeys, Player player, Room room) throws Exception
     {
         check_if_dead(player, room);
@@ -43,7 +41,7 @@ public class Controller
 
     void die(Player player, Room room) throws Exception
     {
-        current_room = new Room(room.get_room_string(), room.get_coord1(), room.get_coord2(), room.get_room_name());
+        roomController.set_room(new Room(room.get_room_string(), room.get_coord1(), room.get_coord2(), room.get_room_name()));
         playerController.die(player);
     }
 

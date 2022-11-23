@@ -27,6 +27,10 @@ public class RoomController
     {
         return current_room;
     }
+    public void set_room(Room nroom)
+    {
+        current_room = nroom;
+    }
 
     public void change_room(Player player, Room room) throws Exception
     {
