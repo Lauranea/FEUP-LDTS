@@ -45,9 +45,6 @@ public class GameState
 
     public void step(Gui gui) throws Exception
     {
-        check_if_dead();
-        change_room();
-        
         controller.step(gui.get_pressedKeys(), player, room);
         viewer.step(gui, player, room);
     }
@@ -93,26 +90,6 @@ public class GameState
             
             player.set_position_y(107);
             player.change_room(room);
-        }
-    }
-
-    void die() throws Exception
-    {
-        room = new Room(room.get_room_string(), room.get_coord1(), room.get_coord2(), room.get_room_name());
-        // player.die();
-    }
-
-    void check_if_dead() throws Exception
-    {
-        for(Enemy e : room.get_enemies())
-        {
-            if ((player.get_position_x() > e.get_position_x() && player.get_position_x() < e.get_position_x() + e.get_size_x()) || (player.get_position_x() + player.get_size_x() > e.get_position_x() && player.get_size_x() + player.get_position_x() < e.get_position_x() + e.get_size_x()))
-            {
-                if ((player.get_position_y() >= e.get_position_y() && player.get_position_y() <= e.get_position_y() + e.get_size_y()) || (player.get_position_y() + player.get_size_y() >= e.get_position_y() && player.get_size_y() + player.get_position_y() <= e.get_position_y() + e.get_size_y()))
-                {
-                    die();
-                }
-            }
         }
     }
 }

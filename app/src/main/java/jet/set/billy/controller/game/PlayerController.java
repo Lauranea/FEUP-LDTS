@@ -252,14 +252,14 @@ public class PlayerController
         }
     }
 
-    // public void die()
-    // {
-    //     px = safe_px;
-    //     py = safe_py;
-    //     jumping = false;
-    //     fall_after_jump = false;
-    //     grounded = true;
-    // }
+    public void die(Player player)
+    {
+        player.set_position_x(player.get_safe_position_x());
+        player.set_position_y(player.get_safe_position_y());
+        jumping = false;
+        fall_after_jump = false;
+        grounded = true;
+    }
 
 
     public void step(Set<Character> pressedKeys, Player player, Room room)
