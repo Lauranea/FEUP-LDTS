@@ -17,12 +17,19 @@ public class GameController
 {
     PlayerController playerController = new PlayerController();
     EnemyController enemyController = new EnemyController();
+
+    Room current_room;
     
     Vector<Vector<String>> rooms = new Vector<Vector<String>>(Arrays.asList
     (
         new Vector<String>(Arrays.asList("Corridor", "Bathroom")),
         new Vector<String>(Arrays.asList("Kitchen"))
     ));
+
+    public GameController(Room room)
+    {
+        current_room = room;
+    }
 
     public void step(Set<Character> pressedKeys, Player player, Room room) throws Exception
     {
@@ -36,9 +43,14 @@ public class GameController
         }
     }  
 
+    public Room get_room()
+    {
+        return current_room;
+    }
+
     void die(Player player, Room room) throws Exception
     {
-        room = new Room(room.get_room_string(), room.get_coord1(), room.get_coord2(), room.get_room_name());
+        current_room = new Room(room.get_room_string(), room.get_coord1(), room.get_coord2(), room.get_room_name());
         playerController.die(player);
     }
 
@@ -63,7 +75,7 @@ public class GameController
             String room_name = rooms.get(room.get_coord1()).get(room.get_coord2() - 1);
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
             room_string = room_string.replaceAll("\r", "");
-            room = new Room(room_string, room.get_coord1(), room.get_coord2() - 1, room_name);
+            current_room = new Room(room_string, room.get_coord1(), room.get_coord2() - 1, room_name);
 
             player.set_position_x(237);
             player.set_safe_position_x(player.get_position_x());
@@ -74,7 +86,7 @@ public class GameController
             String room_name = rooms.get(room.get_coord1()).get(room.get_coord2() + 1);
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
             room_string = room_string.replaceAll("\r", "");
-            room = new Room(room_string, room.get_coord1(), room.get_coord2() + 1, room_name);
+            current_room = new Room(room_string, room.get_coord1(), room.get_coord2() + 1, room_name);
             
             player.set_position_x(3);
             player.set_safe_position_x(player.get_position_x());
@@ -85,7 +97,7 @@ public class GameController
             String room_name = rooms.get(room.get_coord1() + 1).get(room.get_coord2());
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
             room_string = room_string.replaceAll("\r", "");
-            room = new Room(room_string, room.get_coord1() + 1, room.get_coord2(), room_name);
+            current_room = new Room(room_string, room.get_coord1() + 1, room.get_coord2(), room_name);
             
             player.set_position_y(-5);
             player.set_safe_position_x(player.get_position_x());
@@ -96,7 +108,7 @@ public class GameController
             String room_name = rooms.get(room.get_coord1() - 1).get(room.get_coord2());
             String room_string = Files.readString(Paths.get(getClass().getClassLoader().getResource("rooms/"+room_name+".txt").toURI()));
             room_string = room_string.replaceAll("\r", "");
-            room = new Room(room_string, room.get_coord1() - 1, room.get_coord2(), room_name);
+            current_room = new Room(room_string, room.get_coord1() - 1, room.get_coord2(), room_name);
             
             player.set_position_y(107);
             player.set_safe_position_x(player.get_position_x());

@@ -19,12 +19,12 @@ import jet.set.billy.controller.Controller;
 
 public class GameState
 {
-    Viewer viewer = new Viewer();
-    Controller controller = new Controller();
-
     Player player;
 
     Room room;
+
+    Viewer viewer;
+    Controller controller;
 
     Map<Integer, Enemy> enemies = new HashMap<>();
 
@@ -35,10 +35,15 @@ public class GameState
         room = new Room(room_string, 0, 1, "Bathroom");
 
         player = new Player(150, 100);
+
+        viewer = new Viewer();
+        controller = new Controller(room);
     }
 
     public void step(Gui gui) throws Exception
     {
+        room = controller.get_room();
+
         controller.step(gui.get_pressedKeys(), player, room);
         viewer.step(gui, player, room);
     }

@@ -12,10 +12,20 @@ import jet.set.billy.Enemy;
 
 public class Controller
 {
-    GameController gameController = new GameController();
+    GameController gameController;
+
+    public Controller(Room room)
+    {
+        gameController = new GameController(room);
+    }
 
     public void step(Set<Character> pressedKeys, Player player, Room room) throws Exception
     {
         gameController.step(pressedKeys, player, room);
+    }
+
+    public Room get_room()
+    {
+        return gameController.get_room();
     }
 }
