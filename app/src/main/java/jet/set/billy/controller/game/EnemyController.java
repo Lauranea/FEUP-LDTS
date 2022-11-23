@@ -64,7 +64,7 @@ public class EnemyController
             {
                 if (e.get_position_x() > e.get_position_x2())
                 {
-                    e.set_position_x(e.get_position_x());
+                    e.set_position_x(e.get_position_x1());
                 }
                 else
                 {

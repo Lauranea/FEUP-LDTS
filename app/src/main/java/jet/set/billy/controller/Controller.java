@@ -6,15 +6,12 @@ import java.util.List;
 import jet.set.billy.Player;
 import jet.set.billy.Room;
 import jet.set.billy.controller.game.EnemyController;
-import jet.set.billy.controller.game.GameController;
 import jet.set.billy.controller.game.PlayerController;
 import jet.set.billy.controller.game.RoomController;
 import jet.set.billy.Enemy;
 
 public class Controller
 {
-    GameController gameController;
-
     PlayerController playerController = new PlayerController();
     EnemyController enemyController = new EnemyController();
     RoomController roomController;
