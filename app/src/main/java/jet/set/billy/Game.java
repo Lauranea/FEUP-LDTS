@@ -46,7 +46,7 @@ public class Game
     Vector<Vector<String>> rooms = new Vector<Vector<String>>(Arrays.asList
     (
         new Vector<String>(Arrays.asList("Corridor", "Bathroom")),
-        new Vector<String>(Arrays.asList("Kitchen"))
+        new Vector<String>(Arrays.asList("Kitchen", "Winery"))
     ));
 
     Map<String, BasicTextImage> blocks = new HashMap<>();
