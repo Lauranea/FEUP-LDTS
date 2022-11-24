@@ -62,7 +62,7 @@ public class Room
         {
             for (int j = 0; j < 13; j++)
             {
-                if (room_layout.charAt(i + j * 26) == '1') // murderous block
+                if (room_layout.charAt(i + j * 26) == '1') // guba
                 {
                     for (int ii = i; ii < 25; ii++)
                     {
@@ -77,13 +77,13 @@ public class Room
                 }
                 else if (room_layout.charAt(i + j * 26) == '3') // arrow
                 {
-                    String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/arrow.txt").toURI()));
+                    String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/arrow_right.txt").toURI()));
                     enemyString = enemyString.replaceAll("\r", "");
                     enemies.add(new Enemy(-20, j*10, 270, j*10, false, 2, enemyString, 10, 3));
                 }
                 else if (room_layout.charAt(i + j * 26) == '4') // arrow
                 {
-                    String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/arrow.txt").toURI()));
+                    String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/arrow_left.txt").toURI()));
                     enemyString = enemyString.replaceAll("\r", "");
                     enemies.add(new Enemy(270, j*10, -20, j*10, false, 2, enemyString, 10, 3));
                 }
