@@ -7,9 +7,9 @@ said amulets and be able to finally go have a good night sleep in his comfy bed.
 
 ### IMPLEMENTED FEATURES
 
-- **Jumping** - The player is able to jump up, or in the direction he was facing before by pressing the space bar, experiencing a bit of acceleration during said jump.
+- **Jumping** - The player is able to jump up, or in the direction he was walking before by pressing the space bar, experiencing a bit of acceleration during said jump.
 - **Collision** - Collisions are an extremely important feature, enabling the creation of well programmed enemies and objects.
-- **Stationary enemies** - Stationary enemies and objects are spread out through the house to challenge the player, having the player to jump in order to not be killed.
+- **Stationary enemies** - Stationary enemies and objects are spread out through the house to challenge the player, forcing the player to jump while taking the movement of the enemies into account.
 - **Moving enemies** - Moving enemies provide a bigger challenge for the player, having to jump but account for the movement of the enemy itself.
 - **Toilet** - Just like the original game, in the starting room a toilet, which is constantly opening and closing, can be found in the starting room.
 - **Multiple Rooms** - In order to provide a fuller experience, multiple small room are available for the player to traverse through during his adventure.
