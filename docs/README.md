@@ -7,7 +7,7 @@ said amulets and be able to finally go have a good night sleep in his comfy bed.
 
 ### IMPLEMENTED FEATURES
 
-- **Jumping** - The player is able to jump up, or in the direction he was facing before, experiencing a bit of acceleration during said jump.
+- **Jumping** - The player is able to jump up, or in the direction he was facing before by pressing the space bar, experiencing a bit of acceleration during said jump.
 - **Collision** - Collisions are an extremely important feature, enabling the creation of well programmed enemies and objects.
 - **Stationary enemies** - Stationary enemies and objects are spread out through the house to challenge the player, having the player to jump in order to not be killed.
 - **Moving enemies** - Moving enemies provide a bigger challenge for the player, having to jump but account for the movement of the enemy itself.
@@ -15,11 +15,6 @@ said amulets and be able to finally go have a good night sleep in his comfy bed.
 - **Multiple Rooms** - In order to provide a fuller experience, multiple small room are available for the player to traverse through during his adventure.
 - **Stairs** - When it comes to stairs there are two possibilities. The main one is that the player needs to go upward into a higher area but just walking into the stair, but if the player wishes to go straight ahead, he can jump through said stairs and continue onward.
 - **Ladders** - Just like the stairs, the ladders enable you to go upward and onward, but there are two differences. Firstly, as a ladder would, it goes straight up ahead, instead of diagonally. Secondly, instead of jumping to go ahead, you jump to go up, and keep running to go onward.
-
-**Examples**:
-
-- **Jumping** - The game character will jump when the space bar key is pressed.
-- **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
 
 ### PLANNED FEATURES
 
