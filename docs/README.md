@@ -1,16 +1,19 @@
 ## LPOO_<T><G> - <jet-set-willy>
 
-> Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are.
-
-**Example**:
-
-In this exciting platform game you can help KangarooBoy save the world, by collecting all the coins throughout ten different levels in which you will […].
-
-This project was developed by *John Doe* (*john.doe*@fe.up.pt) and *Jane Doe* (*jane.doe*@fe.up.pt) for LPOO 2018⁄19.
+A kinda faithful recreation of the cult classic game for the ZX Spectrum, Jet Set Willy.
+Jet Set Willy is a platform game where a tired Billy has to collect all the amulets spread out throughout multiple rooms.
+These rooms are constantly filled with enemies, and Billy must avoid these in order to complete his objective of collecting
+said amulets and be able to finally go have a good night sleep in his comfy bed.
 
 ### IMPLEMENTED FEATURES
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
+- **Jumping** -
+- **Stationary enemies**
+- **Moving enemies**
+- **Toilet**
+- **Multiple Rooms**
+- **Stairs**
+- **Ladders**
 
 **Examples**:
 
