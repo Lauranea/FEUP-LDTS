@@ -1,9 +1,11 @@
-## LPOO_<T><G> - <jet-set-willy>
+## LDTS_1407 - jet-set-willy
 
 A kinda faithful recreation of the cult classic game for the ZX Spectrum, Jet Set Willy.
 Jet Set Willy is a platform game where a tired Billy has to collect all the amulets spread out throughout multiple rooms.
 These rooms are constantly filled with enemies, and Billy must avoid these in order to complete his objective of collecting
 said amulets and be able to finally go have a good night sleep in his comfy bed.
+
+-This project was made by Pedro Beirão(up202108718), João Dias da Silva(202108713) and Maria Sofia Minnemann(202007342)
 
 ### IMPLEMENTED FEATURES
 
@@ -25,10 +27,8 @@ said amulets and be able to finally go have a good night sleep in his comfy bed.
 
 ### DESIGN
 
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
-
-- **Problem in Context:** //change mvc//
-> The description of the design context and the concrete problem that motivated the instantiation of the pattern. Someone else other than the original developer should be able to read and understand all the motivations for the decisions made. When refering to the implementation before the pattern was applied, don’t forget to [link to the relevant lines of code](https://help.github.com/en/articles/creating-a-permanent-link-to-a-code-snippet) in the appropriate version.
+- **Problem in Context:** While developing the game, we noticed that some classes had many different methods, resulting in a visually unappealing code. It was also hard to change some features without affecting other part of the code.
+ 
 - **The Pattern:** We have applied the MVC design pattern. This pattern is used to divide the app in three parts:
   - Model: contains the data;
   - View: displays the model. it can access the data in it but cannot change it;
@@ -83,14 +83,6 @@ The use of the State Pattern in the current design allows the following benefits
 - We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
 - There are now more classes and instances to manage, but still in a reasonable number.
 
-
-------
-
-#### DATA CLASS
-
-The `PlatformSegment` class is a **Data Class**, as it contains only fields, and no behavior. This is problematic because […].
-
-A way to improve the code would be to move the `isPlatformSegmentSolid()` method to the `PlatformSegment` class, as this logic is purely concerned with the `PlatformSegment` class.
 
 ### TESTING
 
