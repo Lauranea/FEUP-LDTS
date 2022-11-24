@@ -1,15 +1,15 @@
 xxxxxxxxxxxxxxxxxxxxxxxxx
 x                       x
-x                        
-x              1   2     
+x                       x
+x              1   2    x
 x           H-----------x
 x           H           x
 x  3        H           x
 x           H           x
 x---s  ----------  z----x
-     s            z      
-      s          z       
-       s1      2z        
+     s            z     x
+      s          z      x
+       s1      2z       x
 xxxxxxxxxxxxxxxxxxxxxxxxx
 #########################
 #########################

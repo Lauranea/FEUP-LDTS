@@ -53,7 +53,7 @@ public class Game
         {
             state.step(gui);
 
-            Thread.sleep(20);
+            Thread.sleep(5);
         }
         gui.close();
     }
