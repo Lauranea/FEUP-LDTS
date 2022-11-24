@@ -89,7 +89,7 @@ public class Room
                 }
                 else if (room_layout.charAt(i + j * 26) == '5') // smol cactus
                 {
-                    String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/smol_cactus.txt").toURI()));
+                    String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/shmol_cactus.txt").toURI()));
                     enemyString = enemyString.replaceAll("\r", "");
                     enemies.add(new Enemy(i*10, j*10+5, 0, 0, false, 0, enemyString, 6, 5));
                 }
@@ -97,7 +97,7 @@ public class Room
                 {
                     String enemyString = Files.readString(Paths.get(getClass().getClassLoader().getResource("enemies/beeg_cactus.txt").toURI()));
                     enemyString = enemyString.replaceAll("\r", "");
-                    enemies.add(new Enemy(i*10, j*10-3, 0, 0, false, 0, enemyString, 10, 13));
+                    enemies.add(new Enemy(i*10, j*10-3, 0, 0, false, 0, enemyString, 9, 13));
                 }
             }
         }

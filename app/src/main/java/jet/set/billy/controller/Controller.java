@@ -7,19 +7,19 @@ import jet.set.billy.Player;
 import jet.set.billy.Room;
 import jet.set.billy.controller.game.EnemyController;
 import jet.set.billy.controller.game.PlayerController;
-import jet.set.billy.controller.game.RoomController;
+import jet.set.billy.controller.game.WorldController;
 import jet.set.billy.Enemy;
 
 public class Controller
 {
     PlayerController playerController = new PlayerController();
     EnemyController enemyController = new EnemyController();
-    RoomController roomController;
+    WorldController worldController;
 
     public void step(Set<Character> pressedKeys, Player player, Room room) throws Exception
     {
         check_if_dead(player, room);
-        roomController.change_room(player, room);
+        worldController.change_room(player, room);
 
         playerController.step(pressedKeys, player, room);
         for (Enemy enemy : room.get_enemies())
@@ -30,18 +30,18 @@ public class Controller
 
     public Room get_room()
     {
-        return roomController.get_room();
+        return worldController.get_room();
     }
 
     public Controller(Room room)
     {
-        roomController = new RoomController(room);
+        worldController = new WorldController(room);
     }
  
 
     void die(Player player, Room room) throws Exception
     {
-        roomController.set_room(new Room(room.get_room_string(), room.get_coord1(), room.get_coord2(), room.get_room_name()));
+        worldController.set_room(new Room(room.get_room_string(), room.get_coord1(), room.get_coord2(), room.get_room_name()));
         playerController.die(player);
     }
 

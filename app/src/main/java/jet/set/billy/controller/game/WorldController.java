@@ -1,32 +1,14 @@
 package jet.set.billy.controller.game;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Vector;
-
-import jet.set.billy.Player;
 import jet.set.billy.Room;
 
-public class RoomController
+public class WorldController
 {
-    Vector<Vector<String>> rooms = new Vector<Vector<String>>(Arrays.asList
-    (
-        new Vector<String>(Arrays.asList("Corridor", "Bathroom")),
-        new Vector<String>(Arrays.asList("Kitchen", "Winery"))
-    ));
-
-    Room current_room;
-
-    public RoomController(Room room)
+    public WorldController(Room room)
     {
         current_room = room;
     }
 
-    public Room get_room()
-    {
-        return current_room;
-    }
     public void set_room(Room nroom)
     {
         current_room = nroom;
