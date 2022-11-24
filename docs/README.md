@@ -12,9 +12,9 @@ said amulets and be able to finally go have a good night sleep in his comfy bed.
 - **Stationary enemies** - Stationary enemies and objects are spread out through the house to challenge the player, forcing the player to jump while taking the movement of the enemies into account.
 - **Moving enemies** - Moving enemies provide a bigger challenge for the player, having to jump but account for the movement of the enemy itself.
 - **Toilet** - Just like the original game, in the starting room a toilet, which is constantly opening and closing, can be found in the starting room.
-- **Multiple Rooms** - In order to provide a fuller experience, multiple small room are available for the player to traverse through during his adventure.
-- **Stairs** - When it comes to stairs there are two possibilities. The main one is that the player needs to go upward into a higher area but just walking into the stair, but if the player wishes to go straight ahead, he can jump through said stairs and continue onward.
-- **Ladders** - Just like the stairs, the ladders enable you to go upward and onward, but there are two differences. Firstly, as a ladder would, it goes straight up ahead, instead of diagonally. Secondly, instead of jumping to go ahead, you jump to go up, and keep running to go onward.
+- **Multiple Rooms** - In order to provide a better experience, multiple rooms are available for the player to traverse through during his adventure.
+- **Stairs** - Stairs can either allow the player to go upward, onto a higher room or platform or to jump through them and proceed onwards.
+- **Ladders** - Ladders give you the ability to go upwards onto platforms too far for your reach without them.
 
 ### PLANNED FEATURES
 
