@@ -1,0 +1,15 @@
+xxxxxxxxxxxxxxxxxxxx    x
+x  j                    x
+x           j           x
+x*                H-----x
+x3                H   * x
+x  ----s          H   * f
+x       s      j  H   * f
+x        s        H   * f
+x         ----------  * f
+x             4       * x
+x      -            j   x
+x 1              2 5    x
+xxxxxxxxxxxxxxxxxxxxxxxxx
+#########################
+6 1 Nomen Luni

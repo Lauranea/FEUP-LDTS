@@ -1,0 +1,15 @@
+x **               z----x
+x         9       z     x
+x        9       z      x
+x               z       f
+x      9       z        f
+x     9    zxxxxxxxxxxxxx
+x         z      x      x
+x        z       x      x
+x       z 0      x *x   x
+x      z 0       x *x   x
+x     z          x *x  -x
+x    z 0         x *x   x
+xs  - 0            *x-  x
+#########################
+1 1 Another Brick in the Wall

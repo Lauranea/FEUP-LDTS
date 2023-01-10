@@ -1,13 +1,13 @@
-     x   
-x   xxx  
-x x xxx  
-x x xxx  
- xx xxx x
-  x xxx x
-  xxxxx x
-    xxx x
-    xxxxx
-  x xxxx 
-  xxxxx  
-    xxx  
-    xxx  
+     g   
+g   ggg  
+g g ggg  
+g g ggg  
+ gg ggg g
+  g ggg g
+  ggggg g
+    ggg g
+    ggggg
+  g gggg 
+  ggggg  
+    ggg  
+    ggg  

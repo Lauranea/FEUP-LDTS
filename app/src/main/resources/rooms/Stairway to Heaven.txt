@@ -1,0 +1,15 @@
+xs                 *x-  x
+x s                 x   x
+x  s                x - x
+x   --         -    x   x
+x*         -       -x  -x
+x      -            x   x
+x      *         -  x - x
+x            -      x   x
+x                   x-  x
+x          -        x   x
+x      -               -x
+x                       x
+x   Hxxxxxxxxxxxxxxxxxxxx
+#########################
+2 1 Stairway to Heaven

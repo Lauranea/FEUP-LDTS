@@ -1,0 +1,15 @@
+x                       x
+x                       x
+x                     * x
+x                       x
+                    z---x
+                   z    x
+            *     z     x
+xs     -----------      x
+x s                     x
+x  s *                   
+x   s           *        
+x    s      1        2   
+xxxxxxs    xxxxxxxxxxxxxx
+#########################
+3 3 Shine on You Crazy Diamond

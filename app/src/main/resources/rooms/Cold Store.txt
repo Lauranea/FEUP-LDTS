@@ -1,0 +1,15 @@
+xxxxxxxxxxxxxxxxxxxxxxxxx
+x  9                     
+x                        
+x  *   --s             zx
+x         s           z x
+x-   -     --        z  x
+x3              * 5 z   x
+x              ---------x
+x       *          4   *x
+x                     z-x
+x  0    -            z  x
+x7               8  z   x
+xxxxxxxxxxxxxxxxxxxxffffx
+#########################
+5 1 Cold Store

@@ -1,0 +1,15 @@
+xxxxxxxxxxxxxxxxxxxxxxxxx
+x                       x
+x4                      x
+x ** x---------------s  x
+x ** x                s x
+x3** x                 sx
+x ** x  z---------------x
+x ** x z                x
+x4** xz                 x
+x ** x---------------s  x
+x ** x                s x
+x3** x                 sx
+x ** x             z----x
+#########################
+0 1 Heaven

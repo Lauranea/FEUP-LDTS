@@ -1,15 +1,15 @@
 xxxxxxxxxxxxxxxxxxxxxxxxx
 x                       x
-x                       x
-x              1   2    x
-x           H-----------x
-x           H           x
-x  3        H           x
-x           H           x
+x                  *     
+x *                      
+xH            1   2      
+xH          H-----------x
+xH          H           x
+x3          H           x
 x---s  ----------  z----x
-     s            z     x
-      s          z      x
-       s1      2z       x
+     s            z   * x
+      s    *     z       
+    1  s        z  2     
 xxxxxxxxxxxxxxxxxxxxxxxxx
 #########################
-#########################
+4 2 Winery

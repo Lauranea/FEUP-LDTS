@@ -1,15 +1,15 @@
 xxxxxxxxs   xxxxxxxxxxxxx
 x        s              x
-x         s             x
-x          s            x
+x         s           * x
+x  *       s            x
 x           xxxxxxxxxxxxx
 x                       x
-x       H               x
+x      5H               x
 xH----------x           x
-xH          x           x
+xH* 4       x           x
 xH          x            
 xH                       
 xH 1                 2   
 xxxxxxxxxxxxxxxxxxxxxxxxx
 #########################
-#########################
+4 1 Kitchen

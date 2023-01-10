@@ -1,15 +1,15 @@
-xxxxxxxxxxxxxxxxxxxxxxxxx
-x                       x
-x                       x
-x                        
-x                xx      
-x               xxxx     
-x              xxxxxx    
-xxxxxxxx    xxxx    xxxxx
-x                        
-x                        
-x                        
-x                 6      
+x   Hxxxxxxxxxxxxxxxxxxxx
+x   H                   x
+x*  H                   x
+x   H                   x
+x   H                    
+x   H                    
+x   H       7         8  
+xxxxxxxx    ------------x
+x              *        x
+x  3                    x
+                         
+   *              6      
 xxxxxxxxs   xxxxxxxxxxxxx
 #########################
-#########################
+3 1 Corridor

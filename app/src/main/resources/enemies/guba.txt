@@ -1,10 +1,11 @@
-    xxx   
-   xxxxx  
-  xxxxxxx 
- xxxxxxxxx
- xxxxxxxxx
-  xxxxxxx 
-   xxxxx  
-  xxxxxxx 
- xxx   xxx
-  xxx xxx 
+   bbb   
+  bbbbb  
+ bbbbbbb 
+bbbwbwbbb
+bbbbbbbbb
+ bbnnnbb 
+  nnnnn  
+ bbnnnbb 
+ bb   bb 
+rrrrrrrrr
+ cc   cc 

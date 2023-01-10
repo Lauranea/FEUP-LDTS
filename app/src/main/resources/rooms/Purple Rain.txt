@@ -1,0 +1,15 @@
+xxxxxxxxxxxxxxxxxxxxxxxxx
+x       g      g        x
+x            g          x
+x   g                 g x
+x g z----------------x* x
+x  z                 x* x
+x z                  x* x
+xz        g          x* x
+x----------------sg  x* x
+                  s  x* x
+                   s x* x
+                    sx* x
+xxxxxxxxxxxxxxxxxxxxxx* x
+#########################
+3 4 Purple Rain

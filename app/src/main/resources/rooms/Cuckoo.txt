@@ -1,0 +1,15 @@
+xxxxxxs    xxxxxxxxxxxxxx
+x      s         9       
+        s                
+         s               
+          --------   z--x
+x---s               z  *x
+x *  s             z    x
+x     s  6       0z     x
+x      xxxxxxxxxxxxxxxxxx
+xxxxxxxx       *       4x
+                        x
+                        x
+xxxxxxxxxxxxxxxxx    zxxx
+#########################
+4 3 Cuckoo

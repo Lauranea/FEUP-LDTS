@@ -1,0 +1,15 @@
+xxxxxxxxxxxxxxxxx    zxxx
+x        *          z   x
+x       ***        z    x
+x        *        z    *x
+x        *       z      x
+x  7            z  8    x
+x  -----------------   Hx
+x*     9               Hx
+x   5                  Hx
+xxxxxx         *       Hx
+                       Hx
+       0 H7          8 Hx
+xxxxxxxxxxxxxxxxxxxxxx-Hx
+#########################
+5 3 Chapel
